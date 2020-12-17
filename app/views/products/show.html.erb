@@ -1,0 +1,46 @@
+<div class="container fill_height">
+	<div class="row align-items-center">
+		<div class="col-8">
+			<% @product.images.each do |image| %> <%= image_tag image,:class =>
+			"img-fluid" %> <% end %>
+		</div>
+
+		<div class="col-4">
+			<div class="">
+				<h3 class=""><b><%= @product.name %></b></h3>
+				<span>
+					<span class="text-danger">₹</span>
+					<span class="banner_price"><%= @product.price %></span><br />
+					<span>
+						<% if @product.discount == 0 %>
+						<p>Discount not available</p>
+						<% else %>
+						<p>Discount <%= @product.discount %></p>
+						<% end %>
+					</span>
+				</span>
+
+				<div class="d-flex">
+					<p>color:</p>
+					<div class="ml-1"><%= @product.color %></div>
+				</div>
+				<div class="d-flex">
+					Sold By :
+					<div class="ml-1"><%= @product.sold_by %></div>
+				</div>
+
+				<div><b>Brand : </b> <%= @product.brand %></div>
+				<div><b> Memory Storage : </b> <%= @product.memoryStorage %></div>
+				<div><b> Operating System : </b> <%= @product.operatingSystem %></div>
+				<div>
+					<b> About this item :</b><br />
+					<li><%= @product.description %></li>
+				</div>
+
+				<div class="button banner_button">
+					<%= link_to "Add to cart", add_to_cart_path(@product), method: :put %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

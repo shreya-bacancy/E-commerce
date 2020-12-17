@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECommerceApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   
+     <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+       <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>OneTech</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="OneTech shop project" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <div class="super_container">
+      <!-- Header -->
+
+      <header class="header">
+        <!-- Top Bar -->
+
+        <div class="top_bar">
+          <div class="container">
+            <div class="row">
+              <div class="col d-flex flex-row">
+                <div class="top_bar_contact_item">
+                  <div class="top_bar_icon"><%= image_tag "phone.png" %></div>
+                  +38 068 005 3570
+                </div>
+                <div class="top_bar_contact_item">
+                  <div class="top_bar_icon"><%= image_tag "mail.png" %></div>
+                  <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                </div>
+                <div class="top_bar_content ml-auto">
+                  <div class="top_bar_user">
+                    <% if supplier_signed_in? %>
+                      </div>
+                </div>
+                <div class="top_bar_menu d-flex">
+                  <div style="margin-top: 20px" class="user_icon">
+                  <%= image_tag "user.svg" %></div>
+                  <ul class="standard_dropdown top_bar_dropdown">
+                   
+                    <li >
+
+                      <%= link_to current_supplier.email %><i
+                        class="fas fa-chevron-down"
+                      ></i>
+                      <ul>
+                        <li>
+                          <%= link_to 'Edit Profile',
+                          edit_supplier_registration_path %>
+                        </li>
+                        <li>
+                          <%= link_to "logout",destroy_supplier_session_path,
+                          method: :delete %>
+                        </li>
+                     
+                     <% elsif user_signed_in? %>
+                  </div>
+                </div>
+                <div class="top_bar_menu d-flex">
+                  <div style="margin-top: 20px" class="user_icon">
+                  <%= image_tag "user.svg" %></div>
+                  <ul class="standard_dropdown top_bar_dropdown">
+                   
+                    <li >
+
+                      <%= link_to current_user.name %><i
+                        class="fas fa-chevron-down"
+                      ></i>
+                      <ul>
+                        <li>
+                          <%= link_to 'Edit Profile',
+                          edit_user_registration_path %>
+                        </li>
+                        <li>
+                          <%= link_to "logout",destroy_user_session_path,
+                          method: :delete %>
+                        </li>
+                        <% else %>
+
+                          <div class="user_icon">
+                  <%= image_tag "user.svg" %></div>
+                <div><%= link_to "Register",new_user_registration_path %></div>
+                 </div>
+                </div>
+                <div class="top_bar_menu d-flex">
+                  <div style="margin-top: 20px" class="user_icon">
+                  <%= image_tag "user.svg" %></div>
+                  <ul class="standard_dropdown top_bar_dropdown">
+                   
+                    <li >
+
+                      <%= link_to 'login' %><i
+                        class="fas fa-chevron-down"
+                      ></i>
+                      <ul>
+                        <li>
+                          <%= link_to 'User Login',
+                          new_user_session_path %>
+                        </li>
+                        <li>
+                          <%= link_to "Supplier Login",new_supplier_session_path%>
+                        </li>
+               
+                <% end %>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header_main">
+          <div class="container">
+            <div class="row">
+              <!-- Logo -->
+              <div class="col-lg-2 col-sm-3 col-3 order-1">
+                <div class="logo_container">
+                  <div class="logo"><%= link_to "OneTech", root_path %></div>
+                </div>
+              </div>
+
+              <!-- Search -->
+              <div
+                class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right"
+              >
+                <div class="header_search">
+                  <div class="header_search_content">
+                    <div class="header_search_form_container">
+                      <%= form_with url: search_index_path, method: :get, local: true, class:
+                      "header_search_form clearfix" do |form| %>
+                       <%= form.text_field :query, value: params[:query], class: 'header_search_input', placeholder: 'search for products' %>
+                      <%end%>
+                        
+                        <button
+                          type="submit"
+                          class="header_search_button trans_300"
+                          value="Submit"
+                        >
+                          <%= image_tag "search.png" %>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Wishlist -->
+              <% if user_signed_in? %>
+              <div
+                class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right"
+              >
+                <div
+                  class="wishlist_cart d-flex flex-row align-items-center justify-content-end"
+                >
+                  <div
+                    class="wishlist d-flex flex-row align-items-center justify-content-end"
+                  >
+                    <div class="wishlist_icon">
+                      <%= image_tag "heart.png" %>
+                    </div>
+                    <div class="wishlist_content">
+                      <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                      <div class="wishlist_count">115</div>
+                    </div>
+                  </div>
+
+                  <!-- Cart -->
+                  <div class="cart">
+                    <div
+                      class="cart_container d-flex flex-row align-items-center justify-content-end"
+                    >
+                      <div class="cart_icon">
+                        <%= image_tag "cart.png" %>
+                        <div class="cart_count"> <span><%=current_user.cart_count%></span></div>
+                      </div>
+                      <div class="cart_content">
+                        <div class="cart_text"> <%= link_to cart_path do%>
+    My Cart
+   
+  <%end%></div>
+                      
+                      </div>
+                      <%end%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+    
+ <%= yield %>
+  </body>
+</html>
