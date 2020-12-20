@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'transactions/new'
   get 'contacts/index'
   get 'search/index'
   get 'carts/show'
@@ -8,6 +9,8 @@ Rails.application.routes.draw do
   get 'products/camera_index'
   get 'products/tv_index'
   resources :products 	
+
+  resources :transactions , only: [:new,:create]
 
   resource :cart, only: [:show] do
     put 'add/:product_id', to: 'carts#add', as: :add_to

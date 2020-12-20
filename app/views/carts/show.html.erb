@@ -50,7 +50,7 @@
               </div>
             </div>
 
-           
+           <%=link_to "Checkout", new_transaction_path, class: "button" unless @cart_products.blank?%>
           </div>
         </div>
       </div>

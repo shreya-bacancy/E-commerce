@@ -2,7 +2,8 @@ class Product < ApplicationRecord
 	belongs_to :category 
 	belongs_to :supplier
 	
-
+	has_many :orders
+	has_many :users , through: :orders
 	has_many_attached :images
 	
 	def cart_action(current_user_id)
