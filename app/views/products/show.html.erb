@@ -40,6 +40,9 @@
 				<div class="button banner_button">
 					<%= link_to "Add to cart", add_to_cart_path(@product), method: :put %>
 				</div>
+				<div class="button banner_button">
+					<%= link_to "Add to wishlist", add_to_wishlist_path(@product), method: :create %>
+				</div>
 			</div>
 		</div>
 	</div>

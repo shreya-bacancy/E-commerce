@@ -11,7 +11,7 @@ RailsAdmin.config do |config|
   ## == CancanCan ==
   config.authorize_with :cancancan
 
-  config.model 'Product' do 
+config.model 'Product' do 
   edit do 
     field :sold_by do
       default_value do
@@ -19,7 +19,14 @@ RailsAdmin.config do |config|
       end
     end
   end 
+
+  show do
+    configure :product do
+     bindings[:view].current_supplier.products
+   end
+  end
 end
+
 
   ## == Pundit ==
   # config.authorize_with :pundit

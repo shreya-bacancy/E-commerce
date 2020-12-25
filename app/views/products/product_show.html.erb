@@ -1,0 +1,56 @@
+<div class="d-flex align-items-right">
+    <div class="button banner_button">
+          <%= link_to "Add product" , new_product_path %>
+        </div>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">description</th>
+      <th scope="col">price</th>
+      <th scope="col">Color</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Status</th>
+      <th scope="col">Discount</th>
+      <th scope="col">Brand</th>
+      
+      <th scope="col">Model</th>
+      <th scope="col">Model Year</th>
+      <th scope="col">Connector type</th>
+      <th scope="col">Memory Storage</th>
+      <th scope="col">Operating System</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  	<% @products.each do |product| %>
+    <tr>
+      <th scope="row"><%= product.id %></th>
+      <td><%= product.name%></td>
+      <td><%= product.description %></td>
+      <td><%= product.price %></td>
+      <td><%= product.color %></td>
+      <td><%= product.stock %></td>
+      <td><%= product.status %></td>
+      <td><%= product.discount %></td>
+      <td><%= product.brand %></td>
+      <td><%= product.model %></td>
+      <td><%= product.model_year %></td>
+      <td><%= product.connector_type %></td>
+      <td><%= product.memoryStorage %></td>
+      <td><%= product.operatingSystem %></td>
+      <td><%=link_to "edit" , edit_product_path(product)%></td>
+      <td><%=link_to "delete" , product_path(product), method: :delete, data: {confirm: "Are you Sure?"}%></td>
+      
+      
+    </tr>
+   
+<%end%>
+
+  </tbody>
+
+</table>
+ <%= paginate @products%>

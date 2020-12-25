@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1>Create a new product</h1>
+      <%= bootstrap_form_for(@product) do |f| %>
+       <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@product.errors.count, "error") %> prohibited
+        this product from being saved:
+      </h2>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <%= f.text_field  :name, 
+                    placeholder: 'Title', 
+                    class: 'form-control',
+                    required: true, 
+                    minlength: 5,
+                    maxlength: 100 %>
+ 
+      <%= f.text_field :color ,class:'form-control' %>
+       <%= f.text_area :description ,class:'form-control' %>
+          <%= f.collection_select :category_id, @categories_all, :id, :category_type , class:'form-control' %>     
+       <%= f.number_field :price ,class:'form-control' %>
+        <%= f.text_field :size ,class:'form-control' %>
+         <%= f.hidden_field :sold_by ,class:'form-control',:value => current_supplier.contact_name %>
+          <%= f.number_field :stock ,class:'form-control' %>
+           <%= f.check_box   :status  %>
+            <%= f.number_field :discount ,class:'form-control' %>
+          <%= f.text_field :brand ,class:'form-control' %>
+           <%= f.text_field :model ,class:'form-control' %>
+
+
+  <!--  <%= f.check_box :status, id: 'user_extended_profile' %>
+    <%= content_tag :div, class: 'js-dependent-fields', data: { 'checkbox-id': 'user_extended_profile', 'checkbox-value': 'true'} do %>
+      <%= f.number_field :price %>
+      <%= f.number_field :model_year%>
+      <%= f.text_field :operatingSystem %>
+    <% end %> -->
+  
+    <%= f.submit "Add product", class: 'button banner_button' %>
+    <% end %>
+    </div>
+  </div>
+</div>

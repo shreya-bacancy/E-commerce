@@ -16,8 +16,16 @@ gem 'devise'
 gem 'coffee-rails'
 gem 'pry-rails'
 gem 'redis'
+gem 'chartkick'
 gem 'hiredis'
+gem 'groupdate'
+
+gem "bootstrap_form"
+
+gem 'devise-bootstrap-form'
+gem 'popper_js'
 gem 'dotenv-rails'
+gem "font-awesome-rails"
 gem "braintree"
 gem 'jquery-rails'
 gem 'devise-i18n'
@@ -26,9 +34,12 @@ gem 'devise-bootstrap-views'
 gem 'rails_admin', '~> 2.0'
 gem 'gon', '~> 6.2.0'
 gem 'figaro'
+gem 'jquery-turbolinks'
+gem 'dependent-fields-rails'
 # gem "rails_admin_import", "~> 2.2"
 # gem "charlock_holmes"
 gem 'cancancan'
+gem 'pry'
 gem 'kaminari'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'

@@ -1,0 +1,31 @@
+<div class="d-flex align-items-right">
+    <div class="button banner_button">
+          <%= link_to "Add category" , new_category_path %>
+        </div>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category_type</th>
+       <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  	<% @categories.each do |category| %>
+    <tr>
+      <th scope="row"><%= category.id %></th>
+      <td><%= category.category_type%></td>
+       <td><%=link_to "edit" , edit_category_path(category)%></td>
+      <td><%=link_to "delete" , category_path(category), method: :delete, data: {confirm: "Are you Sure?"}%></td>
+   
+      
+    </tr>
+   
+<%end%>
+
+  </tbody>
+
+</table>
+

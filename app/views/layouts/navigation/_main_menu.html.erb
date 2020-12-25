@@ -15,14 +15,10 @@
 								</div>
 
 								<ul class="cat_menu">
-									<li><%= link_to "Computers & Laptops", products_computer_index_path %> <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><%= link_to "Cameras & Photos", products_camera_index_path %><i class="fas fa-chevron-right"></i></li>
+									<% @categories.each do |name| %>
+									<li><%= link_to name, show_category_product_path(name) %> <i class="fas fa-chevron-right ml-auto"></i></a></li>
 									
-									<li><%= link_to "smartphones", products_smartphone_index_path %><i class="fas fa-chevron-right"></i></a></li>
-									<li><%= link_to "TV & Audio", products_tv_index_path %>T<i class="fas fa-chevron-right"></i></li>
-									<li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-								
-									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+									<%end%>
 								</ul>
 							</div>
 
@@ -32,7 +28,7 @@
 								<ul class="standard_dropdown main_nav_dropdown">
 									
 									
-									<li class="text-black"><a href="contact.html"><b>Contact Us</b></a></li>
+									<li class="text-black"><%= link_to "Contact Us", contacts_index_path %><b></b></a></li>
 								</ul>
 							</div>
 

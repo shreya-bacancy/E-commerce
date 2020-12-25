@@ -4,27 +4,15 @@
     <title>ECommerceApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= include_gon %>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
   </head>
 
   <body>
    
-     <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-       <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>OneTech</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="OneTech shop project" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-
-  <body>
+     
+    
     <div class="super_container">
       <!-- Header -->
 
@@ -136,6 +124,7 @@
               </div>
 
               <!-- Search -->
+              <% if user_signed_in? %>
               <div
                 class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right"
               >
@@ -154,11 +143,40 @@
                         >
                           <%= image_tag "search.png" %>
                         </button>
+                       
                       </form>
                     </div>
                   </div>
                 </div>
               </div>
+ <%end%>
+
+               <% if supplier_signed_in? %>
+              <div
+                class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right"
+              >
+                <div class="header_search">
+                  <div class="header_search_content">
+                    <div class="header_search_form_container">
+                      <%= form_with url: product_search_path, method: :get, local: true, class:
+                      "header_search_form clearfix" do |form| %>
+                       <%= form.text_field :query, value: params[:query], class: 'header_search_input', placeholder: 'search for products' %>
+                      <%end%>
+                        
+                        <button
+                          type="submit"
+                          class="header_search_button trans_300"
+                          value="Submit"
+                        >
+                          <%= image_tag "search.png" %>
+                        </button>
+                      
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <%end%>
 
               <!-- Wishlist -->
               <% if user_signed_in? %>
@@ -175,8 +193,8 @@
                       <%= image_tag "heart.png" %>
                     </div>
                     <div class="wishlist_content">
-                      <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                      <div class="wishlist_count">115</div>
+                      <div class="wishlist_text"><%= link_to "wishlist", wishlists_show_path %></div>
+                      <div class="wishlist_count"></div>
                     </div>
                   </div>
 
