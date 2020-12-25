@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
 	end
 
 	def product_params
-		params.require(:product).permit(:name,:color,:category_id,:description,:brand,:stock,:status,:model,:price,:size).merge(supplier_id: current_supplier.id)
+		params.require(:product).permit(:name,:color,:category_id,:description,:brand,:stock,:status,:model,:price,:images,:size).merge(supplier_id: current_supplier.id)
 	end
 
 end

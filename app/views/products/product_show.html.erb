@@ -8,6 +8,8 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
+      <th scope="col">Product Image</th>
+      
       <th scope="col">description</th>
       <th scope="col">price</th>
       <th scope="col">Color</th>
@@ -30,6 +32,9 @@
     <tr>
       <th scope="row"><%= product.id %></th>
       <td><%= product.name%></td>
+      <td>    <% product.images.each do |image| %> <%= image_tag image,:class =>
+      "img-fluid" %> <% end %></td>
+      
       <td><%= product.description %></td>
       <td><%= product.price %></td>
       <td><%= product.color %></td>

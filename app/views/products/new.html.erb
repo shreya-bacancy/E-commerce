@@ -23,6 +23,13 @@
                     required: true, 
                     minlength: 5,
                     maxlength: 100 %>
+  <div class="form-group row">
+          <%= f.label :images, class: 'col-sm-3 col-form-label' %>
+          <div class="col-sm-9">
+            <%= f.file_field :images, class: 'form-control' %>
+          </div>
+        </div>
+            
  
       <%= f.text_field :color ,class:'form-control' %>
        <%= f.text_area :description ,class:'form-control' %>

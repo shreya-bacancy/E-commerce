@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
  resources :categories
 
-  resources :products , only:[:edit,:update,:index]
+  resources :products , only:[:edit,:update,:index,:destroy]
 
   get 'search' , to: 'search#search_product' , as: :product_search
 

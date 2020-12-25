@@ -38,12 +38,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="d-flex justify-content-space-around">
+	<div class="d-flex justify-content-around">
 		<div>
-			<%= line_chart Product.group_by_day(:created_at).count %>
+			<%= column_chart Product.group_by_day(:created_at).count %>
 		</div>
 			<div>
-					<%= line_chart Category.group_by_day(:created_at).count %>
+					<%= bar_chart Product.where(supplier_id: current_supplier.id).joins(:category).group(:category_type).count %>
 			</div>
 	</div>
 </nav>
