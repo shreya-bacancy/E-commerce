@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :addresses
   # get 'categories/new'
   # get 'categories/edit'
   # get 'categories/index'
@@ -7,6 +8,12 @@ Rails.application.routes.draw do
   get 'contacts/index'
   get 'search/index'
   get 'carts/show'
+  get 'carts/address/:id' , to: 'carts#address_show_add' , as: :address_show_add
+  get 'carts/payment_option/:id' , to: 'carts#payment_option' , as: :payment
+  get 'carts/payment_success/:id' , to: 'carts#payment_success' , as: :payment_success
+  get 'user/orders' , to: 'users#order' , as: :order
+  
+  
   devise_for :suppliers
   
   # resources :products do

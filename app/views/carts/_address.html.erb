@@ -1,0 +1,25 @@
+<div>
+	<%if @address.present? %>
+	<div class="d-flex flex-column justify-content-center">
+		<div class="d-flex flex-column">
+			<h4>Conatct details</h4>
+			<%=@user.name%> <br />
+			<%= @user.contact_no %>
+		</div>
+
+		<div class="my-1">
+			<h4>Address</h4>
+			<% @address.each do |address|%>
+			<div class="d-flex flex-column">
+				<div><%=address.address%></div>
+				<div> <%=address.area%> <%=address.city%></div>
+				<%=address.state%>
+				pincode: <%= address.pincode %>
+			</div>
+			<%end%>
+		</div>
+		<%else%>
+		<h3>Address not found</h3>
+		<%end%>
+	</div>
+</div>

@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -73,6 +73,9 @@
                         <li>
                           <%= link_to 'Edit Profile',
                           edit_user_registration_path %>
+                        </li>
+                         <li>
+                          <%= link_to "your orders",order_path %>
                         </li>
                         <li>
                           <%= link_to "logout",destroy_user_session_path,
@@ -194,7 +197,7 @@
                     </div>
                     <div class="wishlist_content">
                       <div class="wishlist_text"><%= link_to "wishlist", wishlists_show_path %></div>
-                      <div class="wishlist_count"><%= @wishlist_count%></div>
+                      <div class="wishlist_count"><%= @wishlist_count %></div>
                     </div>
                   </div>
 

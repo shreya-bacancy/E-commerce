@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :products, through: :orders
   has_many :orders
   has_one :wishlist
+  has_many :addresses
 
   def cart_count
     $redis.scard "cart#{id}"

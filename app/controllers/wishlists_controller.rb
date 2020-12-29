@@ -2,7 +2,7 @@ class WishlistsController < ApplicationController
   
   def index
 		@wishlists = Wishlist.where(user_id:current_user)
-
+		@wishlist_count = @wishlists.count
 	end
 
 	def new

@@ -54,10 +54,15 @@
 									<div class="product_price"><%= product.price %></div>
 									<div class="product_name"><div><a href="#" tabindex="0"><%= product.name %></a></div></div>
 								</div>
+								<div>
 							<div class="button banner_button">
-					<%= link_to "remove from wishlist", delete_from_wishlist_path(product), method: :delete %>
+									<%= link_to "add to cart", add_to_cart_path(product), method: :put %>
+				
 				</div>
-								
+				<div class="button banner_button">
+							<%= link_to "remove from wishlist", delete_from_wishlist_path(product), method: :delete %>
+				</div>
+								</div>
 							</div>
 							
 							<%end%>

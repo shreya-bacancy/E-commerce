@@ -1,0 +1,28 @@
+<%= render 'address' %>
+<div class="button banner_button">
+	<%= link_to "Change or Add address" , new_address_path %>
+</div>
+<hr />
+<div>
+	<h3>price details(<%=current_user.cart_count%> item)</h3>
+	<div class="row">
+		<div class="col-1">MRP :</div>
+		<div class="col-3"><%= current_user.total_price %></div>
+	</div>
+	<div class="row">
+		<div class="col-1">Discount :</div>
+		<div class="col-3"><%= @cart_discount %></div>
+	</div>
+	<hr />
+	<div>
+		<div class="row">
+			<div class="col-1">Total :</div>
+			<% @total = current_user.total_price - @cart_discount %>
+			<div class="col-3"><%= @total %></div>
+		</div>
+		<div class="row">
+			<div class="col-2 button banner_button mx-2 text-align-center"><%= link_to "view details" , carts_show_path%></div>
+			<div class="col-2 button banner_button text-center"><%= link_to "confirm" , payment_path(@cart_products) %></div>
+		</div>
+	</div>
+</div>

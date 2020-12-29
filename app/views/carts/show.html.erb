@@ -41,21 +41,29 @@
                 </li>
               </ul>
             </div>
-            <% end %>
-            <!-- Order Total -->
+           
+         
+
+          
+          </div>
+ <!--   <%=link_to "Checkout", new_transaction_path, class: "button" unless @cart_products.blank?%> -->
+    <% end %>
+       <!-- Order Total -->
             <div class="order_total">
               <div class="order_total_content text-md-right">
                 <div class="order_total_title">Order Total:</div>
                 <div class="order_total_amount"><%= @cart_total_price %></div>
               </div>
             </div>
+     <%=link_to "place order", address_show_add_path(@cart_products), class: "button banner_button" unless @cart_products.blank?%>
 
-           <%=link_to "Checkout", new_transaction_path, class: "button" unless @cart_products.blank?%>
-          </div>
         </div>
       </div>
+
     </div>
+
   </div>
+
 
   <!-- Newsletter -->
 

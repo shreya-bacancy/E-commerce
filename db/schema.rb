@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_130340) do
+ActiveRecord::Schema.define(version: 2020_12_28_051722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 2020_12_22_130340) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "state"
+    t.integer "pincode"
+    t.string "city"
+    t.string "address"
+    t.string "area"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -84,6 +96,13 @@ ActiveRecord::Schema.define(version: 2020_12_22_130340) do
     t.index ["wishlist_id"], name: "index_products_wishlists_on_wishlist_id"
   end
 
+  create_table "ptoducts_wishlists", force: :cascade do |t|
+    t.bigint "wishlist_id", null: false
+    t.bigint "product_id", null: false
+    t.index ["product_id"], name: "index_ptoducts_wishlists_on_product_id"
+    t.index ["wishlist_id"], name: "index_ptoducts_wishlists_on_wishlist_id"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -108,10 +127,6 @@ ActiveRecord::Schema.define(version: 2020_12_22_130340) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name"
-    t.string "address"
-    t.string "state"
-    t.string "city"
-    t.integer "pincode"
     t.date "dob"
     t.string "contact_no"
     t.string "reset_password_token"
@@ -133,12 +148,15 @@ ActiveRecord::Schema.define(version: 2020_12_22_130340) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "users"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "suppliers"
   add_foreign_key "products_wishlists", "products"
   add_foreign_key "products_wishlists", "wishlists"
+  add_foreign_key "ptoducts_wishlists", "products"
+  add_foreign_key "ptoducts_wishlists", "wishlists"
   add_foreign_key "wishlists", "products"
   add_foreign_key "wishlists", "users"
 end
