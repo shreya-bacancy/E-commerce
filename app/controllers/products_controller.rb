@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 	
 	before_action :find_product , only: [:destroy,:show]
+	#before_action :categories
 
 	def categories
 		@categories = Category.pluck(:category_type)
@@ -44,14 +45,15 @@ class ProductsController < ApplicationController
 	end
 
 	def brand
+		@categories = Category.pluck(:category_type)
 		@products = Product.where(brand: params[:brand_name]).page(params[:page]).per(7)
-		render "brand"
 	end
 
 	def price
+		@categories = Category.pluck(:category_type)
 		@min_price = Product.minimum(:price)
 		@max_price = Product.maximum(:price) 
-		@products = Product.where(price: (params[:min_price]..params[:mid_price])).includes(:category).where(categories: {category_type: 'smartphones'}).page(params[:page]).per(7)
+		@products = Product.where(price: (params[:min_price]..params[:mid_price])).includes(:category).where(categories: {category_type: params[:name]}).page(params[:page]).per(7)
 	end
 
 	private

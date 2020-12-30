@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  #resources :reviews , only: [:create]
+  get 'reviews/new/:id' , to: 'reviews#new' , as: :new_review
+  post 'reviews/post/:id' , to: 'reviews#create' , as: :reviews
+  get 'reviews/:product_id' , to: 'reviews#index' , as: :all_review
+  
+  
   resources :addresses
   # get 'categories/new'
   # get 'categories/edit'
@@ -13,7 +19,10 @@ Rails.application.routes.draw do
   get 'carts/payment_success/:id' , to: 'carts#payment_success' , as: :payment_success
   get 'user/orders' , to: 'users#order' , as: :order
   
-  
+  get 'supplier/orders' , to: 'suppliers#order_mgmt' ,as: :order_mgmt
+
+  delete 'user/order/:id' , to: 'orders#destroy' , as: :order_cancel
+
   devise_for :suppliers
   
   # resources :products do
@@ -24,8 +33,8 @@ Rails.application.routes.draw do
 
   get 'products/:category_type', to: 'products#category' ,as: :show_category_product
   get 'product/:id', to: 'products#show' ,as: :show_product
-  get 'products/:brand_name' , to: 'products#brand', as: :show_brand
-  get 'products/:min_price/:mid_price' , to: 'products#price', as: :price
+  get 'productss/:brand_name' , to: 'products#brand', as: :show_brand_product
+  get 'productss/:name/:min_price/:mid_price' , to: 'products#price', as: :price_product
   
   get 'product', to: 'products#new' , as: :new_product
   post 'products', to: 'products#create' , as: :products

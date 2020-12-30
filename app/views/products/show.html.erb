@@ -1,8 +1,8 @@
 <div class="container fill_height">
 	<div class="row align-items-center">
 		<div class="col-8">
-			<% @product.images.each do |image| %> <%= image_tag image,:class =>
-			"img-fluid" %> <% end %>
+			<% @product.images.each do |image| %> 
+			<%= zoom_image_tag image,:class => 'img-fluid' %> <% end %>
 		</div>
 
 		<div class="col-4">
@@ -43,7 +43,16 @@
 				<div class="button banner_button">
 					<%= link_to "Add to wishlist", add_to_wishlist_path(@product), method: :create %>
 				</div>
+					<div class="button banner_button">
+				<%= link_to "Add review ", new_review_path(@product) %>
+			</div>
+			<div class="button banner_button">
+				<%= link_to "view all review ", all_review_path(@product) %>
+			</div>
 			</div>
 		</div>
 	</div>
+</div>
+<div>
+	
 </div>

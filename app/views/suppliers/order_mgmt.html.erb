@@ -38,11 +38,10 @@
 	<div class="d-flex justify-content-around">
 		<div>
 			<%= column_chart Product.where(supplier_id:
-			current_supplier.id).group_by_day(:created_at).count %>
+			current_supplier.id).joins(:orders).group_by_day(:created_at).count %>
 		</div>
 		<div>
-			<%= bar_chart Product.where(supplier_id:
-			current_supplier.id).joins(:category).group(:category_type).count %>
+			<%= line_chart Product.where(supplier_id: current_supplier.id).joins(:products_wishlists,:category).group(:category_type).count %>
 		</div>
 	</div>
 </nav>

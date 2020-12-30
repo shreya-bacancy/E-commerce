@@ -1,0 +1,12 @@
+<h1>All Reviews</h1>
+
+<% @reviews.each do |review| %>
+<div>
+  <h5><%= review.user.name %></h5>
+
+  <p><%= review.content %></p>
+    <p><%= review.created_at %></p>
+  <!--  -->
+</div>
+<hr>
+<% end %>

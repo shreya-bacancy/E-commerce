@@ -19,12 +19,6 @@ config.model 'Product' do
       end
     end
   end 
-
-  show do
-    configure :product do
-     bindings[:view].current_supplier.products
-   end
-  end
 end
 
 

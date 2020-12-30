@@ -1,11 +1,11 @@
-<%= render "layouts/navigation/main_menu" %>
+<%= render "layouts/navigation/main_menu"  ,collection: @categories %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <!-- Menu -->
 	<div class="home">
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title">Smartphones & Tablets</h2>
+			<h2 class="home_title"><%= params[:name]%></h2>
 		</div>
 	</div>
 
@@ -62,10 +62,10 @@
 
 						<!-- Shop Page Navigation -->
 
-						<%= paginate @products %>
+				
 
 					</div>
-
+		<%= paginate @products %>
 				</div>
 			</div>
 		</div>

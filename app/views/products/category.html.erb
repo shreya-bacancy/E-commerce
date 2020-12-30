@@ -22,6 +22,7 @@
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
 								<% @categories.each do |name| %>
+								<% @name = name%>
 								<li><%= link_to name, show_category_product_path(name) %>
 								</li>
 								<%end%>
@@ -39,7 +40,7 @@
 									<% @min_price= 0 %>
 									<% @mid_price = @mid_price+10000 %>
 									<% while @mid_price <= @max_price do %>
-								<li class="brand_list brand">	<%= link_to "#{@min_price} - #{@mid_price}", price_path(@min_price,@mid_price) %></li>
+								<li class="brand_list brand">	<%= link_to "#{@min_price} - #{@mid_price}", price_product_path(params[:category_type],@min_price,@mid_price) %></li>
 										<% @min_price = @min_price+10000 %>
 										<% @mid_price = @mid_price+10000 %>
 								<%end%>	
@@ -56,7 +57,7 @@
 
 								<% @products.distinct(:brand).pluck(:brand).each do |brand| %>
 
-								<li class="brand"><%= link_to brand , show_brand_path("brand_name": brand) %></li>
+								<li class="brand"><%= link_to brand , show_brand_product_path(brand) %></li>
 								
 								<% end %>
 							</ul>

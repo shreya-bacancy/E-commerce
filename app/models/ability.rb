@@ -13,8 +13,8 @@ class Ability
         can :manage, :all
 
       else
-        can :manage, :all
-        cannot [:update,:destroy,:read], User
+        can :read, :all
+        # cannot [:update,:destroy,:read], User
       end
 
 

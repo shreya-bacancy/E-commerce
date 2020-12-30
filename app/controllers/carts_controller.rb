@@ -43,11 +43,13 @@ class CartsController < ApplicationController
 	def payment_success
 		#while(params[:id].count)
 		product_ids = params[:id].split('/')
+			@user= User.find(current_user.id)
 		product_ids.each do |params|
 		@order = Order.new(user_id: current_user.id, product_id: params)
 		puts "ppp#{product_ids}"
 
 		if @order.save
+			 OrderMailer.with(user: @user).order_email.deliver_now
 		end
 		# 	render "payment_success"
 		# else 
