@@ -10,18 +10,15 @@ require("@rails/activestorage").start()
 require("channels")
 require("chartkick")
 require("chart.js")
-require("jquery")
+//= require jquery
 //= require image_zoomer_main	
-    //= require jquery.elevatezoom
-      //= require jquery.elevateZoom-3.0.8.min
+//= require jquery.elevatezoom
+//= require jquery.elevateZoom-3.0.8.min
 
 //= require bootstrap
 //= require bootstrap-sprockets
-
 //= require product.js
-//= require jquery
-//= require jquery-ujs
-//= require rails-ujs
+
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require transactions

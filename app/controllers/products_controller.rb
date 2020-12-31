@@ -41,6 +41,8 @@ class ProductsController < ApplicationController
 
 	def show
 		 # @product = Product.find(params[:id])
+		 @order=Order.new
+		  @reviews = Review.where(product_id: params[:product_id]).joins(:user)
 	  @cart_action = @product.cart_action current_user.try :id
 	end
 

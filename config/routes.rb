@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   post 'reviews/post/:id' , to: 'reviews#create' , as: :reviews
   get 'reviews/:product_id' , to: 'reviews#index' , as: :all_review
   
+  get 'reviews/:id' , to: 'reviews#index' , as: :your_reviews
+  
   
   resources :addresses
   # get 'categories/new'
@@ -46,7 +48,7 @@ Rails.application.routes.draw do
   get 'search' , to: 'search#search_product' , as: :product_search
 
   resources :wishlists, only: [:show] 
-    post 'wishlists/:product_id' , to: 'wishlists#create', as: :add_to_wishlist
+    get 'product/wishlists/:product_id' , to: 'wishlists#create', as: :add_to_wishlist
     delete 'wishlists/:product_id' , to: 'wishlists#destroy', as: :delete_from_wishlist
   
 

@@ -194,7 +194,7 @@
                     </div>
                     <div class="wishlist_content">
                       <div class="wishlist_text"><%= link_to "wishlist", wishlists_show_path %></div>
-                      <div class="wishlist_count"><%= @wishlist_count%></div>
+                      <div class="wishlist_count"><span id= "like_counter"><%= current_user.wishlist.products.count%></span></div>
                     </div>
                   </div>
 

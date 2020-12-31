@@ -19,7 +19,8 @@ gem 'redis'
 gem 'chartkick'
 gem 'hiredis'
 gem 'groupdate'
- gem 'elevatezoom-rails'
+
+ gem 'elevatezoom-rails', '~> 1.0'
  gem 'image_zoomer'
 gem "bootstrap_form"
 

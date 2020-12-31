@@ -25,7 +25,7 @@ class WishlistsController < ApplicationController
 		# if @wishlist.save
 		@product_id = Product.find(params[:product_id])
 		@wishlist.products<<@product_id
-		redirect_to @wishlist
+	
 	end
 
 	def destroy
@@ -33,7 +33,7 @@ class WishlistsController < ApplicationController
 		@product_id = Product.find(params[:product_id])
 		#binding.pry
 		if @wishlist.products.include?(@product_id)
-			@wishlist.products.destroy(@product_id)
+			@wishlist.products.limit(1).destroy(@product_id)
 		end
 		redirect_to @wishlist
 	end

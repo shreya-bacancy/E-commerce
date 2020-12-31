@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def order
+    
   	@orders = Order.where(user_id: current_user.id)
     #@order_id = Order.find(params[:id])
   	@products = Product.where(id: @orders.pluck(:product_id))

@@ -7,9 +7,7 @@
 					<!-- Categories Menu -->
 
 					<div class="cat_menu_container">
-						<div
-							class="cat_menu_title d-flex flex-row align-items-center justify-content-start"
-						>
+						<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
 							<div class="cat_burger">
 								<span></span><span></span><span></span>
 							</div>
@@ -21,10 +19,7 @@
 								<%= link_to "Product Management" , products_path %>
 								<i class="fas fa-chevron-right ml-auto"></i>
 							</li>
-							<!-- 	<li>
-								<%= link_to "Category Management" , categories_path %>
-								<i class="fas fa-chevron-right"></i>
-							</li> -->
+
 							<li>
 								<%= link_to "Order Management" , order_mgmt_path %>
 								<i class="fas fa-chevron-right ml-auto"></i>
@@ -35,15 +30,48 @@
 			</div>
 		</div>
 	</div>
+	<div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">user Name</th>
+					<th scope="col">product name</th>
+					<th scope="col">order time</th>
+					<th scope="col">order time</th>
+					
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @products.each do |product|%>
+				<tr>
+
+					<th scope="row"></th>
+					<td><%=product[0]%></td>
+					<td><%=product[1]%></td>
+					<td><%=product[2].strftime("%d/%m/%y at %I:%M%p")%></td>
+			
+					
+					<td><%=link_to "cancel order",order_cancel_path(product[3]), method: :delete%></td>
+					
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+	<hr>
+	<h2 class="mt-4 p-2 text-primary underline">order statistics</h2>
 	<div class="d-flex justify-content-around">
 		<div>
 			<%= column_chart Product.where(supplier_id:
-			current_supplier.id).joins(:orders).group_by_day(:created_at).count %>
+			current_supplier.id).joins(:orders).group_by_day(:created_at).count ,
+			ytitle: "orders count"%>
 		</div>
 		<div>
-			<%= line_chart Product.where(supplier_id: current_supplier.id).joins(:products_wishlists,:category).group(:category_type).count %>
+			<%= line_chart Product.where(supplier_id:current_supplier.id).joins(:products_wishlists,:category).group(:category_type).count, xtitle: "category type", ytitle: "wishlist count"%>
 		</div>
 	</div>
 </nav>
 
-<% else %> <%end%>
+<%end%>
