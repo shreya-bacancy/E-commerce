@@ -1,8 +1,8 @@
 <div class="container fill_height">
 	<div class="row align-items-center">
 		<div class="col-8">
-			<% @product.images.each do |image| %> <%= image_tag image,:class =>
-			'img-fluid' ,:id => "zoom_01", "data-zoom-image"=> image%> <% end %>
+			<% @product.images.each do |image| %> <%= image_tag image ,:id => "zoom_01",:class =>
+			'img-fluid',:data_zoom_image => image %> <% end %>
 		</div>
 
 		<div class="col-4">
@@ -62,7 +62,13 @@
 </div>
 <%if @review.present?%> <%= render template: 'reviews/index'%> <%end%>
 <div></div>
-<script type="text/javascript">
-$("#zoom_01").elevateZoom();
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js'></script>
+<script>
+$("#zoom_01").elevateZoom({
+	  cursor: "crosshair",
+	  easing: true
+});
 	
 </script>

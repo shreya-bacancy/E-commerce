@@ -24,7 +24,7 @@ gem 'redis'
 gem 'rubocop', require: false
 
 gem 'bootstrap_form'
-gem 'elevatezoom-rails', '~> 1.0'
+gem 'elevatezoom-rails'
 gem 'image_zoomer'
 
 gem 'braintree'

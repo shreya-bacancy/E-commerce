@@ -367,7 +367,7 @@ DEPENDENCIES
   devise-bootstrap-views
   devise-i18n
   dotenv-rails
-  elevatezoom-rails (~> 1.0)
+  elevatezoom-rails
   faker!
   figaro
   font-awesome-rails

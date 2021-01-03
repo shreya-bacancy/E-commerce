@@ -101,9 +101,11 @@
 							<%= link_to (image_tag image,:class => "img-fluid" ), show_product_path(product) %> <% end %>
 								
 							</div>
-								
-									<div class="product_price"><%= product.price %></div>
+									
+								<div class="product_content">
+								<div class="product_price"><%= product.price %></div>
 									<div class="product_name"><div><a href="#" tabindex="0"><%= product.name %></a></div></div>
+								</div>
 										<div class="product_fav"><i class="fa fa-heart" aria-hidden="true"></i></div>
 								<%if product.stock == 0  %>
 							<div class="text-danger d-flex">product is currently out of stock</div>
