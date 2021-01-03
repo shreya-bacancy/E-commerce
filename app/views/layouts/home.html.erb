@@ -78,7 +78,7 @@
                           <%= link_to "your orders",order_path %>
                         </li>
                           <li>
-                          <%= link_to "your reviews",your_reviews_path(current_user) %>
+                          <%= link_to "your reviews",your_reviews_path %>
                         </li>
                         <li>
                           <%= link_to "logout",destroy_user_session_path,
@@ -200,7 +200,7 @@
                     </div>
                     <div class="wishlist_content">
                       <div class="wishlist_text"><%= link_to "wishlist", wishlists_show_path %></div>
-                      <div class="wishlist_count"><span id="like_counter"><%= current_user.wishlist.products.count %></div></span>
+                      <div class="wishlist_count"><span id="like_counter"><%= current_user.wishlist.products.all.size %></div></span>
                     </div>
                   </div>
 

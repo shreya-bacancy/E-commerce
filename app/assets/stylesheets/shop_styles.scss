@@ -368,7 +368,7 @@ section
 {
 	display: inline-block;
 	position: relative;
-	height: 56px;
+	height: 43px;
 }
 .standard_dropdown li li
 {
@@ -1406,7 +1406,7 @@ select option
 	display: block;
 	position: absolute;
 	top: 52px;
-	right: 1px;
+	right: -12px;
 	width: 1px;
 	height: calc(100% - 71px);
 	background: #e5e5e5;

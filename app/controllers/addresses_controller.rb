@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:show, :edit, :update, :destroy]
+  before_action :set_address, only: %i[show edit update destroy]
 
   # GET /addresses
   # GET /addresses.json
@@ -9,8 +11,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/1
   # GET /addresses/1.json
-  def show
-  end
+  def show; end
 
   # GET /addresses/new
   def new
@@ -20,8 +21,7 @@ class AddressesController < ApplicationController
   end
 
   # GET /addresses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /addresses
   # POST /addresses.json
@@ -64,16 +64,17 @@ class AddressesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_address
-     @address = Address.find(params[:id])
-       #@address = Address.where(user_id: current_user.id)
-      #   @address= User.find(current_user.id).addresses
-      # @current_address = Address.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def address_params
-      params.require(:address).permit(:user_id, :state, :pincode, :city, :address, :area)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_address
+    @address = Address.find(params[:id])
+    # @address = Address.where(user_id: current_user.id)
+    #   @address= User.find(current_user.id).addresses
+    # @current_address = Address.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def address_params
+    params.require(:address).permit(:user_id, :state, :pincode, :city, :address, :area)
+  end
 end

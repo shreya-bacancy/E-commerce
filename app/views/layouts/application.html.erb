@@ -74,6 +74,12 @@
                           <%= link_to 'Edit Profile',
                           edit_user_registration_path %>
                         </li>
+                         <li>
+                          <%= link_to "your orders",order_path %>
+                        </li>
+                          <li>
+                          <%= link_to "your reviews",your_reviews_path %>
+                        </li>
                         <li>
                           <%= link_to "logout",destroy_user_session_path,
                           method: :delete %>
@@ -107,6 +113,7 @@
                 <% end %>
                       </ul>
                     </li>
+                    
                   </ul>
                 </div>
               </div>

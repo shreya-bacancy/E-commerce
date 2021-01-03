@@ -6,19 +6,17 @@ class Ability
   def initialize(supplier)
     # Define abilities for the passed in user here. For example:
     #
-      user ||= User.new # guest user (not logged in)
-      supplier ||= Supplier.new
-     
-      if supplier.admin?
-        can :manage, :all
+    user ||= User.new # guest user (not logged in)
+    supplier ||= Supplier.new
 
-      else
-        can :read, :all
-        # cannot [:update,:destroy,:read], User
-      end
+    if supplier.admin?
+      can :manage, :all
 
+    else
+      can :read, :all
+      # cannot [:update,:destroy,:read], User
+    end
 
-      
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

@@ -1,12 +1,18 @@
-<h4>All Customer Reviews</h4>
-
-<% @reviews.each do |review| %>
-<div>
-  <h5><%= review.user.name %></h5>
+<h3 class="mx-4 text-primary"> Reviews</h3>
+<hr>
+<% @review.each do |review| %>
+<div class="ml-4">
+  <h5 class="fa fa-user-circle"><span class="ml-2"><%= review.user.name %></span></h5>
 
   <p><%= review.content %></p>
-    <p><%= review.created_at %></p>
+    <p><%= review.created_at.strftime("%d/%m/%y at %I:%M%p") %></p>
   <!--  -->
+  <div class="d-flex">
+<div class="button mr-3">	<%= link_to "edit", edit_review_path(review)%></div>
+	<div class="button"><%= link_to "delete", review_path(review) , method: :delete%></div>
+	
 </div>
+</div>
+
 <hr>
 <% end %>

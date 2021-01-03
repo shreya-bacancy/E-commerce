@@ -11,7 +11,7 @@
 
 	<!-- Shop -->
 
-	<div class="shop">
+	<div class="shop p-0">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
@@ -38,31 +38,43 @@
 				
 
 						<div class="product_grid d-flex flex-row">
-							<div class="product_grid_border"></div>
+							<div class="product_grid_border mx-2"></div>
 
 
 							<!-- Product Item -->
 								<% @user_wishlist.each do |product|%>
-							<div class="product_item ml-8">
-								<div class="product_border"></div>
+							<div class="product_item mx-4">
+								<div class="product_border">
+									
+
+									</div>
+<div class="">
+	
+														
+													
+  
+<button type="button" class="close" aria-label="Close">
+									<%= link_to delete_from_wishlist_path(product),method: :delete, class: "close" do %>
+<span aria-hidden="true">&times;</span>	
+
+</button> 
+<% end %></div>
 								<div class="product_image d-flex flex-column align-items-center justify-content-center">
 										<% product.images.each do |image| %> 
-							<%= link_to (image_tag image,:class => "img-fluid" ), show_product_path(product) %> <% end %>
-								
+							<%= link_to (image_tag image,:class => "img-fluid" ), show_product_path(product) , class: "" %> <% end %>
+		
 							</div>
 								<div class="product_content">
-									<div class="product_price"><%= product.price %></div>
-									<div class="product_name"><div><a href="#" tabindex="0"><%= product.name %></a></div></div>
+									<div class="product_price mt-4"><%= product.price %></div>
+									<div class="product_name mt-0"><div><a href="#" tabindex="0"><%= product.name %></a></div></div>
 								</div>
 								
-								<div>
+						
 							<div class="button banner_button">
 									<%= link_to "add to cart", add_to_cart_path(product), method: :put %>
 				
-				</div>
-				<div class="button banner_button">
-							<%= link_to "remove from wishlist", delete_from_wishlist_path(product), method: :delete %>
-				</div>
+				
+			
 								</div>
 							</div>
 							

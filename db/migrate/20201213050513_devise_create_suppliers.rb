@@ -4,9 +4,9 @@ class DeviseCreateSuppliers < ActiveRecord::Migration[6.0]
   def change
     create_table :suppliers do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
-      t.boolean :admin , default: false
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
+      t.boolean :admin, default: false
       t.string :company_name
       t.string :contact_name
       t.string :contact_number
@@ -39,7 +39,6 @@ class DeviseCreateSuppliers < ActiveRecord::Migration[6.0]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
 
       t.timestamps null: false
     end

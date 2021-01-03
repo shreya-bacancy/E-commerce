@@ -32,6 +32,11 @@
 2. Body and some general stuff
 *********************************/
 
+button.close{
+	margin-left: 190px;
+	margin-bottom: 15px;
+}
+
 *
 {
 	margin: 0;
@@ -365,7 +370,7 @@ section
 {
 	display: inline-block;
 	position: relative;
-	height: 56px;
+	height: 43px;
 }
 .standard_dropdown li li
 {

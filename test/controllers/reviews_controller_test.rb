@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ReviewsControllerTest < ActionDispatch::IntegrationTest
@@ -5,40 +7,42 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
     @review = reviews(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get reviews_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_review_url
     assert_response :success
   end
 
-  test "should create review" do
+  test 'should create review' do
     assert_difference('Review.count') do
-      post reviews_url, params: { review: { content: @review.content, product_id: @review.product_id, user_id: @review.user_id } }
+      post reviews_url,
+           params: { review: { content: @review.content, product_id: @review.product_id, user_id: @review.user_id } }
     end
 
     assert_redirected_to review_url(Review.last)
   end
 
-  test "should show review" do
+  test 'should show review' do
     get review_url(@review)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_review_url(@review)
     assert_response :success
   end
 
-  test "should update review" do
-    patch review_url(@review), params: { review: { content: @review.content, product_id: @review.product_id, user_id: @review.user_id } }
+  test 'should update review' do
+    patch review_url(@review),
+          params: { review: { content: @review.content, product_id: @review.product_id, user_id: @review.user_id } }
     assert_redirected_to review_url(@review)
   end
 
-  test "should destroy review" do
+  test 'should destroy review' do
     assert_difference('Review.count', -1) do
       delete review_url(@review)
     end

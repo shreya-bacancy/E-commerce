@@ -1,5 +1,6 @@
-RailsAdmin.config do |config|
+# frozen_string_literal: true
 
+RailsAdmin.config do |config|
   ### Popular gems integration
 
   ## == Devise ==
@@ -11,16 +12,15 @@ RailsAdmin.config do |config|
   ## == CancanCan ==
   config.authorize_with :cancancan
 
-config.model 'Product' do 
-  edit do 
-    field :sold_by do
-      default_value do
-        bindings[:view].current_supplier.company_name
+  config.model 'Product' do
+    edit do
+      field :sold_by do
+        default_value do
+          bindings[:view].current_supplier.company_name
+        end
       end
     end
-  end 
-end
-
+  end
 
   ## == Pundit ==
   # config.authorize_with :pundit
@@ -44,7 +44,7 @@ end
     edit
     delete
     show_in_app
-    
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show
