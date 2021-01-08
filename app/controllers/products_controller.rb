@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :find_product, only: %i[destroy show]
+  before_action :find_product, only: %i[destroy show edit update]
   # before_action :categories
 
   def categories
@@ -15,10 +15,24 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
+    # @product.images.variant(resize: "400x300^", crop: '400x300+0+0')
     if @product.save
       redirect_to products_path
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @categories_all = Category.all
+  end
+
+  def update
+    @categories_all = Category.all
+    if @product.update(product_params)
+      redirect_to products_path
+    else
+      render 'edit'
     end
   end
 
@@ -48,7 +62,7 @@ class ProductsController < ApplicationController
 
   def brand
     @categories = Category.pluck(:category_type)
-    @products = Product.where(brand: params[:brand_name]).page(params[:page]).per(7)
+    @products = Product.where(brand: params[:brand]).includes(:category).where(categories: { category_type: params[:category] }).page(params[:page]).per(7)
   end
 
   def price

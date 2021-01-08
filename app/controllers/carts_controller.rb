@@ -6,7 +6,7 @@ class CartsController < ApplicationController
 
   def show
     @order = Order.new
-    @product = Product.new
+  
     cart_ids = $redis.smembers current_user_cart
     @cart_products = Product.find(cart_ids)
     @cart_total_price = 0
@@ -31,6 +31,7 @@ class CartsController < ApplicationController
 
   def address_show_add
     @address = Address.where(user_id: current_user.id)
+    puts "hjhkhk#{params[:order][:quantity]}"
     @user = User.find(current_user.id)
   end
 

@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 Rails.application.routes.draw do
   resources :reviews, only: %i[edit update destroy]
   get 'reviews/new/:id', to: 'reviews#new', as: :new_review
@@ -18,15 +17,20 @@ Rails.application.routes.draw do
   get 'search/index'
   get 'carts/show'
   get 'carts/address/:id', to: 'carts#address_show_add', as: :address_show_add
-  get 'carts/payment_option/:id', to: 'carts#payment_option', as: :payment
-  get 'carts/payment_success/:id', to: 'carts#payment_success', as: :payment_success
+  get 'carts/payment_option/:id/:quantity', to: 'carts#payment_option', as: :payment
+  get 'carts/payment_success/:id/:quantity', to: 'carts#payment_success', as: :payment_success
   get 'user/orders', to: 'users#order', as: :order
 
   get 'supplier/orders', to: 'suppliers#order_mgmt', as: :order_mgmt
-
+  get 'supplier/delivered/orders', to: 'suppliers#delivered_product', as: :delivered_product
+  
+  post 'supplier/delivered/orders/:product_id', to: 'suppliers#delivered_create', as: :delivered_products
+  
   delete 'user/order/:id/:user_id', to: 'orders#destroy', as: :order_cancel
 
   devise_for :suppliers
+
+  get 'ofs/products' , to: 'suppliers#ofs_products' , as: :ofs_products
 
   # resources :products do
   #   collection do
@@ -36,7 +40,7 @@ Rails.application.routes.draw do
 
   get 'products/:category_type', to: 'products#category', as: :show_category_product
   get 'product/:id', to: 'products#show', as: :show_product
-  get 'productss/:brand_name', to: 'products#brand', as: :show_brand_product
+  get 'productss/:brand/:category', to: 'products#brand', as: :show_brand_product
   get 'productss/:name/:min_price/:mid_price', to: 'products#price', as: :price_product
 
   get 'product', to: 'products#new', as: :new_product

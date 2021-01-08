@@ -27,7 +27,7 @@
 				</span>
 					
 					<div class="d-flex"><p>color: </p> <div class="ml-1"><%= product.color %></div></div>
-					<div class="button banner_button"><a href="#">Shop Now</a></div>
+					<div class="button banner_button">	<%= link_to "shop now", add_to_cart_path(product), method: :put %></div>
 					</div>
 <hr class="text-danger">
 				</div>

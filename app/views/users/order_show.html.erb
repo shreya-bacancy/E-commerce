@@ -38,11 +38,25 @@
 								</div>
 							</li>
 						</ul>
+						<% @order = Order.find_by(product_id: product.id)%> <% if
+						@order.order_status == false %>
+						<div class="text-danger">pending</div>
+
 						<div class="cart_item_price cart_info_col">
 							<div class="button banner_button">
-							<%=link_to "cancel order" ,order_cancel_path(product), method: :delete%> 
+								<%=link_to "cancel order",order_cancel_path(product,current_user.id), method: :delete%>
 							</div>
 						</div>
+						<%else%>
+						<div>
+						<div class="" >delivered</div>
+						<div class="cart_item_price cart_info_col">
+							<div class="button banner_button">
+								<%=link_to "Return"%>
+							</div>
+						</div>
+					</div>
+						<%end%>
 					</div>
 				</div>
 

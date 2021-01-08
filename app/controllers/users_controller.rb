@@ -11,13 +11,13 @@ class UsersController < ApplicationController
 
   def order
     @orders = Order.where(user_id: current_user.id)
-    # @order_id = Order.find(params[:id])
     @products = Product.where(id: @orders.pluck(:product_id))
+    @order = Product.where(id: @orders.pluck(:product_id)).joins(:orders).pluck("orders.order_status")
+
     render 'order_show'
   end
 
   private
-
   def home_layout
     current_supplier.present? ? 'application' : 'home'
   end

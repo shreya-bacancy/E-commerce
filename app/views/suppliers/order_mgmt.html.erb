@@ -1,35 +1,5 @@
 <% unless current_supplier.admin? %>
-<nav class="main_nav">
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<div class="main_nav_content d-flex flex-row">
-					<!-- Categories Menu -->
-
-					<div class="cat_menu_container">
-						<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-							<div class="cat_burger">
-								<span></span><span></span><span></span>
-							</div>
-							<div class="cat_menu_text">categories</div>
-						</div>
-
-						<ul class="cat_menu">
-							<li>
-								<%= link_to "Product Management" , products_path %>
-								<i class="fas fa-chevron-right ml-auto"></i>
-							</li>
-
-							<li>
-								<%= link_to "Order Management" , order_mgmt_path %>
-								<i class="fas fa-chevron-right ml-auto"></i>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<%= render 'supplier/navbar' %>
 	<div>
 		<table class="table table-hover", id="destroy-order">
 			<thead>
@@ -38,7 +8,7 @@
 					<th scope="col">user Name</th>
 					<th scope="col">product name</th>
 					<th scope="col">order time</th>
-					<th scope="col">order time</th>
+					<th scope="col"></th>
 					
 					<th scope="col"></th>
 				</tr>
@@ -54,7 +24,10 @@
 			
 					
 					<td><%=link_to "cancel order",order_cancel_path(product[3],product[4]),id: product[3], method: :delete,remote: true%></td>
-					
+					 <%= form_for @order , url:delivered_products_path(product[3]) do |f|%>
+					<td><%= f.check_box "order_status"%></td>
+					<td><%= f.submit "delivered" %></td>
+					<% end %>
 				</tr>
 				<%end%>
 			</tbody>

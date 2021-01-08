@@ -18,7 +18,16 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    @review = Review.new
+    @order= Order.where(product_id:params[:id],order_status:true,user_id:current_user.id)
+    if @order.present?
+      @review = Review.new
+      render 'new'
+    else
+      flash[:notice] = "you are not eligible to write a review"
+   
+      redirect_to show_product_path(params[:id])
+    end
+
   end
 
   # GET /reviews/1/edit

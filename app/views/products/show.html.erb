@@ -1,7 +1,8 @@
+
 <div class="container fill_height">
 	<div class="row align-items-center">
 		<div class="col-8">
-			<% @product.images.each do |image| %> <%= image_tag image ,:id => "zoom_01",:class =>
+			<% @product.images.each do |image| %> <%= image_tag image,:id => "zoom_01",:class =>
 			'img-fluid',:data_zoom_image => image %> <% end %>
 		</div>
 
@@ -53,6 +54,10 @@
 				<div class="button banner_button">
 					<%= link_to "write a review ", new_review_path(@product) %>
 				</div>
+				<div class="text-danger my-4">
+				<%= flash[:notice]%>
+					
+				</div>
 				<!-- <div class="button banner_button">
 				<%= link_to "view all review ", all_review_path(@product) %>
 			</div> -->
@@ -60,10 +65,13 @@
 		</div>
 	</div>
 </div>
-<%if @review.present?%> <%= render template: 'reviews/index'%> <%end%>
+<%if @review.present?%> <%= render template: 'reviews/index'%> 
+<%else%>
+<h3 class="ml-3"> No reviews given yet</h3>
+<%end%>
 <div></div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	
 <script src='https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js'></script>
 <script>
 $("#zoom_01").elevateZoom({

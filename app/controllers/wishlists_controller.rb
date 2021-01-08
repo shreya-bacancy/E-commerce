@@ -1,6 +1,7 @@
-# frozen_string_literal: true
-
+# frozen_string_literal: true 
 class WishlistsController < ApplicationController
+
+  before_action :authenticate_user!  
   def index
     @wishlists = Wishlist.where(user_id: current_user)
     @wishlist_count = @wishlists.count

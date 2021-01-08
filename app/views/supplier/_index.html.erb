@@ -1,40 +1,5 @@
 <% unless current_supplier.admin? %>
-<nav class="main_nav">
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<div class="main_nav_content d-flex flex-row">
-					<!-- Categories Menu -->
-
-					<div class="cat_menu_container">
-						<div
-							class="cat_menu_title d-flex flex-row align-items-center justify-content-start"
-						>
-							<div class="cat_burger">
-								<span></span><span></span><span></span>
-							</div>
-							<div class="cat_menu_text">categories</div>
-						</div>
-
-						<ul class="cat_menu">
-							<li>
-								<%= link_to "Product Management" , products_path %>
-								<i class="fas fa-chevron-right ml-auto"></i>
-							</li>
-							<!-- 	<li>
-								<%= link_to "Category Management" , categories_path %>
-								<i class="fas fa-chevron-right"></i>
-							</li> -->
-							<li>
-								<%= link_to "Order Management" , order_mgmt_path %>
-								<i class="fas fa-chevron-right ml-auto"></i>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<%= render 'supplier/navbar' %>
 	<div class="d-flex justify-content-around">
 		<div>
 			<%= column_chart Product.where(supplier_id:
