@@ -18,6 +18,8 @@ gem 'simple_form'
 gem 'devise'
 gem 'groupdate'
 gem 'hiredis'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 gem 'owlcarousel-rails'
 gem 'pry-rails'
 gem 'puma', '~> 4.1'
@@ -25,6 +27,7 @@ gem 'redis'
 gem "mini_magick"
 gem 'image_processing'
 gem 'rubocop', require: false
+gem 'stripe'
 
 gem 'underscore-rails'
 gem 'bootstrap_form'

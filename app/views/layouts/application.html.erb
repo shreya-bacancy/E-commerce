@@ -13,12 +13,12 @@
    
      
     
-    <div class="super_container">
+    <div style="overflow: initial;" class="super_container">
       <!-- Header -->
 
       <header class="header">
         <!-- Top Bar -->
-
+        <% unless user_signed_in? || supplier_signed_in? %>
         <div class="top_bar">
           <div class="container">
             <div class="row">
@@ -33,7 +33,33 @@
                 </div>
                 <div class="top_bar_content ml-auto">
                   <div class="top_bar_user">
-                    <% if supplier_signed_in? %>
+
+                          <div class="user_icon">
+                  <%= image_tag "user.svg" %></div>
+                <div><%= link_to "Register",new_user_registration_path %></div>
+                 </div>
+                </div>
+                <div class="top_bar_menu d-flex">
+                  <div style="margin-top: 20px" class="user_icon">
+                  <%= image_tag "user.svg" %></div>
+                  <ul class="standard_dropdown top_bar_dropdown">
+                   
+                    <li >
+
+                      <%= link_to 'login' %><i
+                        class="fas fa-chevron-down"
+                      ></i>
+                      <ul>
+                        <li>
+                          <%= link_to 'User Login',
+                          new_user_session_path %>
+                        </li>
+                        <li>
+                          <%= link_to "Supplier Login",new_supplier_session_path%>
+                        </li>
+               
+                <% end %>
+       <!--              <% if supplier_signed_in? %>
                       </div>
                 </div>
                 <div class="top_bar_menu d-flex">
@@ -110,13 +136,13 @@
                           <%= link_to "Supplier Login",new_supplier_session_path%>
                         </li>
                
-                <% end %>
+                <% end %>-->
                       </ul>
                     </li>
                     
                   </ul>
                 </div>
-              </div>
+              </div> 
             </div>
           </div>
         </div>
@@ -131,7 +157,7 @@
               </div>
 
               <!-- Search -->
-              <% if user_signed_in? %>
+            <% unless supplier_signed_in? %>
               <div
                 class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right"
               >
@@ -156,8 +182,8 @@
                   </div>
                 </div>
               </div>
- <%end%>
 
+              <%end%>
                <% if supplier_signed_in? %>
               <div
                 class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right"
@@ -186,13 +212,14 @@
                 <%end%>
 
               <!-- Wishlist -->
-              <% if user_signed_in? %>
+             
               <div
                 class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right"
               >
                 <div
                   class="wishlist_cart d-flex flex-row align-items-center justify-content-end"
                 >
+                <%unless supplier_signed_in? %>
                   <div
                     class="wishlist d-flex flex-row align-items-center justify-content-end"
                   >
@@ -201,7 +228,13 @@
                     </div>
                     <div class="wishlist_content">
                       <div class="wishlist_text"><%= link_to "wishlist", wishlists_show_path %></div>
-                      <div class="wishlist_count"><span id= "like_counter"><%= current_user.wishlist.products.count%></span></div>
+                      <% if current_user.present? %>
+                       <% if current_user.wishlist.present?%>
+                      <div class="wishlist_count"><span id="like_counter"><%= current_user.wishlist.products.all.size %></div></span>
+                      <%else%>
+                        <div class="wishlist_count"><span id="like_counter">0</div></span>
+                      <% end%>
+                      <%end%>
                     </div>
                   </div>
 
@@ -212,20 +245,80 @@
                     >
                       <div class="cart_icon">
                         <%= image_tag "cart.png" %>
-                        <div class="cart_count"> <span><%=current_user.cart_count%></span></div>
+                        <div class="cart_count"> 
+                          <%if current_user.present?%>
+                          <span><%=current_user.cart_count%></span>
+                          <%else%>
+                            <span>0</span>
+                          <%end%>
+                        </div>
                       </div>
                       <div class="cart_content">
                         <div class="cart_text"> <%= link_to cart_path do%>
     My Cart
    
-  <%end%></div>
-                      
-                      </div>
+  </div>
                       <%end%>
+                      </div>
+                      <% if user_signed_in? %>
+                       <div class="cart">
+                    <div
+                      class="cart_container d-flex flex-row align-items-center justify-content-end"
+                    >
+                      <div  class="user_icon cart_icon">
+                  <%= image_tag "user.svg" %></div>
+                  <ul class="standard_dropdown top_bar_dropdown">
+                   
+                    <li class="hassubs">
+                      <div class="mt-4 ">
+                      <%= link_to current_user.name , :class => " cart_content cart_text " %>
+                    </div><i
+                        class="fas fa-chevron-down"
+                      ></i>
+                      <ul>
+                        <li>
+                          <%= link_to 'Edit Profile',
+                          edit_user_registration_path %>
+                        </li>
+                         <li>
+                          <%= link_to "your orders",order_path %>
+                        </li>
+                          <li>
+                          <%= link_to "your reviews",your_reviews_path %>
+                        </li>
+                        <li>
+                          <%= link_to "logout",destroy_user_session_path,
+                          method: :delete %>
+                        </li>
+                        <%end%>
+                      <%end%>
+                       <%if supplier_signed_in?%>
+                       <div class="top_bar_menu d-flex">
+                  <div style="margin-top: 20px" class="user_icon">
+                  <%= image_tag "user.svg" %></div>
+                  <ul class="standard_dropdown top_bar_dropdown">
+                   
+                    <li >
+
+                      <%= link_to current_supplier.email %><i
+                        class="fas fa-chevron-down"
+                      ></i>
+                      <ul>
+                        <li>
+                          <%= link_to 'Edit Profile',
+                          edit_supplier_registration_path %>
+                        </li>
+                        <li>
+                          <%= link_to "logout",destroy_supplier_session_path,
+                          method: :delete %>
+                        </li>
                     </div>
+                    <%end%>
                   </div>
                 </div>
+
               </div>
+
             </div>
           </div>
         </div>

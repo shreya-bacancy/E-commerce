@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  layout :home_layout, only: [:index]
+  # layout :home_layout, only: [:index]
   def index
     @categories = Category.pluck(:category_type)
     @wishlists = Wishlist.where(user_id: current_user)

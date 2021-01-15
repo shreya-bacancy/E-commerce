@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ReviewsController < ApplicationController
+    before_action :authenticate_user!
   before_action :set_review, only: %i[edit update destroy]
+
 
   # GET /reviews
   # GET /reviews.json
@@ -21,7 +23,6 @@ class ReviewsController < ApplicationController
     @order= Order.where(product_id:params[:id],order_status:true,user_id:current_user.id)
     if @order.present?
       @review = Review.new
-      render 'new'
     else
       flash[:notice] = "you are not eligible to write a review"
    
@@ -82,6 +83,6 @@ class ReviewsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def review_params
-    params.require(:review).permit(:user_id, :product_id, :content)
+    params.require(:review).permit(:user_id, :product_id, :content,:rating)
   end
 end

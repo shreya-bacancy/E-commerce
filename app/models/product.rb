@@ -1,6 +1,8 @@
 # frozen_string_literal: true
-
+#require 'elasticsearch/model'
 class Product < ApplicationRecord
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
   belongs_to :category
   delegate :category_type , to: :category
   belongs_to :supplier
@@ -8,6 +10,14 @@ class Product < ApplicationRecord
   has_many :orders, dependent: :destroy, inverse_of: :product
   has_many :users, through: :orders
   has_many_attached :images
+  has_many :reviews
+
+    # settings index: { number_of_shards: 1 } do
+    # mappings dynamic: 'false' do
+    #   indexes :name, analyzer: 'english'
+     # indexes :overview, analyzer: 'english'
+  #   end
+  # end
 
   def cart_action(current_user_id)
     if $redis.sismember "cart#{current_user_id}", id
@@ -33,3 +43,5 @@ class Product < ApplicationRecord
     end
   end
 end
+# Product.__elasticsearch__.create_index!
+# Product.import

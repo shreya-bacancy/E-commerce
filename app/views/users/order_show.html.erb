@@ -9,7 +9,7 @@
 						<ul class="cart_list">
 							<li class="cart_item clearfix">
 								<div class="cart_item_image">
-									<% product.images.each do |image| %> <%=link_to product do%>
+									<% product.images.each do |image| %> <%=link_to show_product_path(product) do%>
 									<div><%= image_tag image,:class => "img-fluid" %></div>
 								</div>
 								<%end%> <%end%>
@@ -57,13 +57,8 @@
 						</div>
 					</div>
 						<%end%>
-					</div>
-				</div>
-
+				
 				<% end %>
 
 				<!-- Newsletter -->
-			</div>
-		</div>
-	</div>
-</div>
+			

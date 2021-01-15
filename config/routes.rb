@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  
+  resources :charges
   resources :reviews, only: %i[edit update destroy]
   get 'reviews/new/:id', to: 'reviews#new', as: :new_review
   post 'reviews/post/:id', to: 'reviews#create', as: :reviews
@@ -17,11 +19,12 @@ Rails.application.routes.draw do
   get 'search/index'
   get 'carts/show'
   get 'carts/address/:id', to: 'carts#address_show_add', as: :address_show_add
-  get 'carts/payment_option/:id/:quantity', to: 'carts#payment_option', as: :payment
+  get 'carts/payment_option/:id/:quantity/:total', to: 'carts#payment_option', as: :payment
   get 'carts/payment_success/:id/:quantity', to: 'carts#payment_success', as: :payment_success
   get 'user/orders', to: 'users#order', as: :order
 
   get 'supplier/orders', to: 'suppliers#order_mgmt', as: :order_mgmt
+  get 'order/export' , to: 'suppliers#export_csv' , as: :export_csv
   get 'supplier/delivered/orders', to: 'suppliers#delivered_product', as: :delivered_product
   
   post 'supplier/delivered/orders/:product_id', to: 'suppliers#delivered_create', as: :delivered_products

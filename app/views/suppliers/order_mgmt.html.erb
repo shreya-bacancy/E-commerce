@@ -1,6 +1,7 @@
 <% unless current_supplier.admin? %>
 <%= render 'supplier/navbar' %>
-	<div>
+<div style="float:right;" class=" button "><%=link_to 'Export orders', export_csv_path(format: 'csv')  %></div>
+
 		<table class="table table-hover", id="destroy-order">
 			<thead>
 				<tr>
@@ -25,8 +26,14 @@
 					
 					<td><%=link_to "cancel order",order_cancel_path(product[3],product[4]),id: product[3], method: :delete,remote: true%></td>
 					 <%= form_for @order , url:delivered_products_path(product[3]) do |f|%>
-					<td><%= f.check_box "order_status"%></td>
-					<td><%= f.submit "delivered" %></td>
+					 <%if product[5]==true%>
+					<td><%= f.check_box "order_status", {checked: true  ,disabled: "disabled"}%></td>
+					<td><%= f.submit "delivered",disabled: true %></td>
+					<%else%>
+						<td><%= f.check_box "order_status", disabled: true%></td>
+						<td><%= f.submit "deliver" %></td>
+						<%end%>
+					
 					<% end %>
 				</tr>
 				<%end%>

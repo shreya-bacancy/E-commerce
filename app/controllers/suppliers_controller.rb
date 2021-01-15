@@ -2,8 +2,18 @@
 
 class SuppliersController < ApplicationController
   def order_mgmt
-    @products =	Product.where(supplier_id: current_supplier.id).joins(orders: :user).pluck('users.name,products.name,orders.created_at,products.id,users.id')
+    @products =	Product.where(supplier_id: current_supplier.id).joins(orders: :user).pluck('users.name,products.name,orders.created_at,products.id,users.id,orders.order_status')
  		@order = Order.new
+   
+  end
+
+  def export_csv
+    @products = Product.where(supplier_id: current_supplier.id).joins(orders: :user).pluck('users.name,products.name,orders.created_at,products.id,users.id,orders.order_status')
+    respond_to do |format|
+    format.html {}
+    format.csv { send_data @products.to_csv ,filename: "orders-#{Date.today}.csv"
+    }
+    end  
   end
 
   def delivered_product

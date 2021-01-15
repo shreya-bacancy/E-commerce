@@ -25,13 +25,15 @@ class WishlistsController < ApplicationController
     end
     # if @wishlist.save
     @product_id = Product.find(params[:product_id])
-    @wishlist.products << @product_id
+
+    @wishlist.products << @product_id unless @wishlist.products.include?(@product_id)
   end
 
   def destroy
     @wishlist = Wishlist.find_by(user_id: current_user.id)
     @product_id = Product.find(params[:product_id])
     # binding.pry
+
     @wishlist.products.destroy(@product_id) if @wishlist.products.include?(@product_id)
     redirect_to @wishlist
   end

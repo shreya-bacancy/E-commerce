@@ -57,6 +57,7 @@ class ProductsController < ApplicationController
     # @product = Product.find(params[:id])
     @order = Order.new
     @review = Review.where(product_id: params[:id]).joins(:user)
+    @avg_rating = Review.where(product_id: params[:id]).average(:rating)
     @cart_action = @product.cart_action current_user.try :id
   end
 

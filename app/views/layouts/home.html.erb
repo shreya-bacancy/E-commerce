@@ -204,7 +204,11 @@
                     </div>
                     <div class="wishlist_content">
                       <div class="wishlist_text"><%= link_to "wishlist", wishlists_show_path %></div>
+                      <% if current_user.wishlist.present?%>
                       <div class="wishlist_count"><span id="like_counter"><%= current_user.wishlist.products.all.size %></div></span>
+                      <%else%>
+                        <div class="wishlist_count"><span id="like_counter">0</div></span>
+                      <% end%>
                     </div>
                   </div>
 

@@ -1,90 +1,15 @@
+/*!
+ * Raty - A Star Rating Plugin
+ *
+ * The MIT License
+ *
+ * author:  Washington Botelho
+ * github:  wbotelhos/raty
+ * version: 3.0.0
+ *
+ */
 
-<div class="container fill_height">
-	<div class="row align-items-center">
-		<div class="col-8">
-			<% @product.images.each do |image| %> <%= image_tag image,:id => "zoom_01",:class =>
-			'img-fluid',:data_zoom_image => image %> <% end %>
-		</div>
-
-		<div class="col-4">
-			<div class="">
-				<h3 class=""><b><%= @product.name %></b></h3>
-				<span>
-					<span class="text-danger">₹</span>
-					<span class="banner_price"><%= @product.price %></span><br />
-					<span>
-						<% if @product.discount == 0 %>
-						<p>Discount not available</p>
-						<% else %>
-						<p>Discount <%= @product.discount %></p>
-						<% end %>
-					</span>
-				</span>
-
-				<div class="d-flex">
-					<p>color:</p>
-					<div class="ml-1"><%= @product.color %></div>
-				</div>
-				<div class="d-flex">
-					Sold By :
-					<div class="ml-1"><%= @product.sold_by %></div>
-				</div>
-
-				<div><b> Brand : </b> <%= @product.brand %></div>
-				<div><b> Memory Storage : </b> <%= @product.memoryStorage %></div>
-				<div><b> Operating System : </b> <%= @product.operatingSystem %></div>
-				<div>
-					<b> About this item :</b><br />
-					<li><%= @product.description %></li>
-				</div>
-				<div>
-				 <div class="review-rating" data-score = "<%= @avg_rating %>"></div>
-				</div>
-				<%if @product.stock == 0 %>
-				<div class="text-danger">product is currently out of stock</div>
-          <% @category_type=Product.joins(:category).where(category_id:2,id:38).pluck("categories.category_type") %>
-        <div class="mt-3">
-        <b><%= link_to "view similar products", show_brand_product_path(@product.brand,@category_type)%></b>
-        <div>
-
-				<%else%>
-				<div class="button banner_button">
-					<%= link_to "Add to cart", add_to_cart_path(@product), method: :put %>
-				</div>
-				<% end %>
-      
-        <div class="button banner_button">
-					<%= link_to "Add to wishlist", add_to_wishlist_path(@product), id: "remote_link",remote:
-					true %>
-				</div>
-				<div class="button banner_button">
-					<%= link_to "write a review ", new_review_path(@product) %>
-				</div>
-				<div class="text-danger my-4">
-				<%= flash[:notice]%>
-					
-				</div>
-				<!-- <div class="button banner_button">
-				<%= link_to "view all review ", all_review_path(@product) %>
-			</div> -->
-			</div>
-		</div>
-	</div>
-</div>
-<%if @review.present?%> <%= render template: 'reviews/index'%> 
-<%else%>
-<h3 class="ml-3"> No reviews given yet</h3>
-<%end%>
-<div></div>
-
-	
-<script src='https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js'></script>
-<script>
-$("#zoom_01").elevateZoom({
-	  cursor: "crosshair",
-	  easing: true
-});
-	(function(root, factory) {
+(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);
   } else if (typeof module === 'object' && module.exports) {
@@ -843,13 +768,3 @@ $("#zoom_01").elevateZoom({
     return Raty;
   })();
 }));
-
-  $('.review-rating').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-
-</script>

@@ -10,7 +10,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("chartkick")
 require("chart.js");
-
+//= require jquery3
 //= require jquery.elevatezoom
 //= require jquery.elevateZoom-3.0.8.min
 
@@ -30,3 +30,13 @@ require("chart.js");
 // const imagePath = (name) => images(name, true)
 
 // user code starts here
+/*!
+ * Raty - A Star Rating Plugin
+ *
+ * The MIT License
+ *
+ * author:  Washington Botelho
+ * github:  wbotelhos/raty
+ * version: 3.0.0
+ *
+ */

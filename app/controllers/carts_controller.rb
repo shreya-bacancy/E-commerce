@@ -54,7 +54,7 @@ class CartsController < ApplicationController
       OrderMailer.with(user: @user).order_email.deliver_now
       @products = Product.find(id)
       $redis.srem current_user_cart, id
-      @products.decrement!(:stock)
+      @products.decrement!(:stock, by= params[:quantity].to_i)
       # 	render "payment_success"
       # else
       # 	render plain: @order.product_id
