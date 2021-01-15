@@ -1,0 +1,21 @@
+<!-- Product Item -->
+<% @products.each do |product|%>
+<div class="product_item">
+	<div class="product_border"></div>
+	<div
+		class="product_image d-flex flex-column align-items-center justify-content-center"
+	>
+		<% product.images.each do |image| %> <%= link_to (image_tag image,:class =>
+		"img-fluid" ), show_product_path(product) %> <% end %>
+	</div>
+	<div class="product_content">
+		<div class="product_price"><%= product.price %></div>
+		<div class="product_name">
+			<div><a href="#" tabindex="0"><%= product.name %></a></div>
+		</div>
+	</div>
+</div>
+
+<%end%>
+
+<!-- Shop Page Navigation -->

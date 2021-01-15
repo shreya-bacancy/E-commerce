@@ -1,10 +1,10 @@
 <%= render "layouts/navigation/main_menu" , collection: @categories%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <!-- Menu -->
-	<div class="home">
+	<div style="height: 103px;" class="home ">
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
-		<div class="home_content d-flex flex-column align-items-center justify-content-center">
+		<div class=" d-flex flex-column align-items-center justify-content-center">
 			<h2 class="home_title"><%= params[:category_type]%></h2>
 		</div>
 	</div>
@@ -40,7 +40,7 @@
 									<% @min_price= 0 %>
 									<% @mid_price = @mid_price+10000 %>
 									<% while @mid_price <= @max_price do %>
-								<li class="brand_list brand">	<%= link_to "#{@min_price} - #{@mid_price}", price_product_path(params[:category_type],@min_price,@mid_price) %></li>
+								<li class="brand_list brand">	<%= link_to "#{@min_price} - #{@mid_price}", price_product_path(params[:category_type],@min_price,@mid_price), remote: true %></li>
 										<% @min_price = @min_price+10000 %>
 										<% @mid_price = @mid_price+10000 %>
 								<%end%>	
@@ -58,7 +58,7 @@
 								<% @products.distinct(:brand).pluck(:brand).each do |brand| %>
 								<% @brand = brand %>
 							
-								<li class="brand"><%= link_to brand , show_brand_product_path(@brand,params[:category_type]) %></li>
+								<li class="brand"><%= link_to brand , show_brand_product_path(@brand,params[:category_type]) , remote: true %></li>
 								
 								<% end %>
 							</ul>
@@ -73,7 +73,7 @@
 
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
-							<div class="shop_product_count"><span><%= @products.count%></span> products found</div>
+							<div class="shop_product_count"><span><%= @products_count%></span> products found</div>
 							<div class="shop_sorting">
 								<span>Sort by:</span>
 								<ul>
@@ -89,8 +89,8 @@
 							</div>
 						</div>
 
-						<div class="product_grid d-flex flex-row flex-wrap">
-							<div class="product_grid_border"></div>
+						<div id ="specific" class="product_grid d-flex flex-row flex-wrap">
+							<div  class="product_grid_border"></div>
 
 
 							<!-- Product Item -->

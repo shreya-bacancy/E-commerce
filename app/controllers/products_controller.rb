@@ -47,6 +47,7 @@ class ProductsController < ApplicationController
   end
 
   def category
+    @products_count = Product.includes(:category).where(categories: { category_type: params[:category_type] }).count
     @products = Product.includes(:category).where(categories: { category_type: params[:category_type] }).page(params[:page]).per(7)
     @categories = Category.pluck(:category_type)
     @min_price = Product.minimum(:price)
