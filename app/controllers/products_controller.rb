@@ -8,6 +8,14 @@ class ProductsController < ApplicationController
     @categories = Category.pluck(:category_type)
   end
 
+  def sort
+    if params[:order] && params[:order] == "Ratings High to Low"
+      @products=Product.includes(:category).where(categories: { category_type: params[:category_type] }).left_outer_joins(:reviews).order("reviews.rating DESC NULLS LAST")
+    elsif params[:order] && params[:order] == "Ratings Low to High"
+      @products=Product.includes(:category).where(categories: { category_type: params[:category_type] }).left_outer_joins(:reviews).order("reviews.rating")
+    end
+  end
+
   def new
     @categories_all = Category.all
     @product = Product.new

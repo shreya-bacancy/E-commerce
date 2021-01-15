@@ -75,17 +75,20 @@
 						<div class="shop_bar clearfix">
 							<div class="shop_product_count"><span><%= @products_count%></span> products found</div>
 							<div class="shop_sorting">
-								<span>Sort by:</span>
+						<!-- 		<span>Sort by:</span> -->
 								<ul>
 									<li>
-										<span class="sorting_text">highest rated<i class="fas fa-chevron-down"></span></i>
-										<ul>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
+										<%= form_with url: product_sort_path(params[:category_type]) , method: :get ,remote: true ,id: 'member_form' do |form|%>
+										
+											<%= form.select :order ,["Ratings High to Low", "Ratings Low to High"], :class => "shop_sorting_button" ,onchange: '$("#member_form").submit();'%>
+										<!-- 	<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li>
-										</ul>
+											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li> -->
+											 <%= form.submit "Sort" %> 
+										
 									</li>
 								</ul>
+								<%end%>
 							</div>
 						</div>
 

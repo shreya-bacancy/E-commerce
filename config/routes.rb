@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'review', to: 'reviews#show', as: :your_reviews
 
+  get 'product/sort/:category_type' , to: 'products#sort' , as: :product_sort
   resources :addresses
   # get 'categories/new'
   # get 'categories/edit'
