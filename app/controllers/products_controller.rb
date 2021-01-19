@@ -3,6 +3,9 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: %i[destroy show edit update]
   # before_action :categories
+  after_action :track_action , only: %i[show]
+
+  
 
   def categories
     @categories = Category.pluck(:category_type)
@@ -92,4 +95,11 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :color, :category_id, :description, :brand, :stock, :status, :model, :price, :images,
                                     :size).merge(supplier_id: current_supplier.id)
   end
+
+  protected
+
+  def track_action
+    ahoy.track "Ran action", request.path_parameters
+  end
+  
 end

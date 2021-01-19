@@ -68,10 +68,11 @@ class CartsController < ApplicationController
       # 	render plain: @order.product_id
       # end
       else
-       @order.destroy 
+       #@order.destroy 
    
     end
   end
+end
 
   private
 

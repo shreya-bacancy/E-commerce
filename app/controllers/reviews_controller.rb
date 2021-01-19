@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    @order= Order.where(product_id:params[:id],order_status:true,user_id:current_user.id)
+    @order= current_user.order_details.where(product_id:params[:id],order_status:true)
     if @order.present?
       @review = Review.new
     else

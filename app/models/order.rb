@@ -3,6 +3,7 @@
 class Order < ApplicationRecord
  # belongs_to :product
   belongs_to :user
+  visitable 
   has_many :order_details , dependent: :destroy
   has_many :products , through: :order_details
   # def stock

@@ -11,7 +11,8 @@ class User < ApplicationRecord
   has_one :wishlist
   has_many :addresses
   has_many :reviews
-
+  has_many :events, class_name: "Ahoy::Event"
+  has_many :visits, class_name: "Ahoy::Visit"
   def cart_count
     $redis.scard "cart#{id}"
   end

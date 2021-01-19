@@ -3,6 +3,8 @@
 class Product < ApplicationRecord
   # include Elasticsearch::Model
   # include Elasticsearch::Model::Callbacks
+  visitable 
+  has_many :events, class_name: "Ahoy::Event"
   belongs_to :category
   delegate :category_type , to: :category
   belongs_to :supplier

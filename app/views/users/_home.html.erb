@@ -168,76 +168,56 @@
 	<!-- Deals of the week -->
 
 	
+	<div>
+	<h3> Recently Viewed items </h3>
+	<div class="col-lg-9">
 					
+					<!-- Shop Content -->
+
 				
-	<!-- Popular Categories -->
 
-	<div class="popular_categories">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="popular_categories_content">
-						<div class="popular_categories_title">Popular Categories</div>
-						<div class="popular_categories_slider_nav">
-							<div class="popular_categories_prev popular_categories_nav"><i class="fas fa-angle-left ml-auto"></i></div>
-							<div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
-						</div>
-						<div class="popular_categories_link"><a href="#">full catalog</a></div>
-					</div>
-				</div>
-				
-				<!-- Popular Categories Slider -->
+						<div class="product_grid d-flex flex-row">
+							<div class="product_grid_border mx-2"></div>
 
-				<div class="col-lg-9">
-					<div class="popular_categories_slider_container">
-						<div class="owl-carousel owl-theme popular_categories_slider">
 
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><%= image_tag "popular_1.png" %></div>
-									<div class="popular_category_text">Smartphones & Tablets</div>
-								</div>
+							<!-- Product Item -->
+								<% @recent_products.each do |product|%>
+							<div class="product_item mx-4">
+								<div class="product_border">
+									
+
+									</div>
+								<div class="product_image d-flex flex-column align-items-center justify-content-center">
+										<% product.images.each do |image| %> 
+							<%= link_to (image_tag image,:class => "img-fluid" ), show_product_path(product) , class: "" %> <% end %>
+		
 							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image">><%= image_tag "popular_2.png" %></div>
-									<div class="popular_category_text">Computers & Laptops</div>
+								<div class="product_content">
+									<div class="product_price mt-4"><%= product.price %></div>
+									<div class="product_name mt-0"><div><a href="#" tabindex="0"><%= product.name %></a></div></div>
 								</div>
+								
+						
+						
 							</div>
+							
+							<%end%>
+</div>
+						<!-- Shop Page Navigation -->
 
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image">><%= image_tag "popular_3.png" %></div>
-									<div class="popular_category_text">Gadgets</div>
-								</div>
-							</div>
+					
 
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image">><%= image_tag "popular_4.png" %></div>
-									<div class="popular_category_text">Video Games & Consoles</div>
-								</div>
-							</div>
+					
+					
 
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><%= image_tag "popular_5.png" %>></div>
-									<div class="popular_category_text">Accessories</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+
+				</div>
+			
+	<!-- Popular Categories -->
+
+	
 
 	<!-- Banner -->
 
