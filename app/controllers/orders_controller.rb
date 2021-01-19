@@ -2,14 +2,14 @@
 class OrdersController < ApplicationController
   def destroy
     if user_signed_in?
-      @order = Order.where(product_id: params[:id], user_id: current_user.id)
-      @orders = Order.where(user_id: current_user.id)
-      @products = Product.where(id: @orders.pluck(:product_id))
+      @order = current_user.order_details.where(product_id: params[:id])
+      @products = current_user.order_details
+    #  @products = Product.where(id: @orders.pluck(:product_id))
       @order.destroy_all
       render 'users/order_show'
     else
       @user =	User.find(params[:user_id])
-      @order = Order.find_by(product_id: params[:id], user_id: params[:user_id])
+      @order = OrderDetail.find_by(product_id: params[:id], user_id: params[:user_id])
 
       @order.delete
 

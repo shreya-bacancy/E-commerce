@@ -2,27 +2,28 @@
 
 class SuppliersController < ApplicationController
   def order_mgmt
-    @products =	Product.where(supplier_id: current_supplier.id).joins(orders: :user).pluck('users.name,products.name,orders.created_at,products.id,users.id,orders.order_status')
- 		@order = Order.new
+    @products =	current_supplier.products.joins(:order_details,[{orders: :user}]).pluck('users.name,products.name,order_details.created_at,products.id,users.id,order_details.order_status')
+ 		@order_detail = OrderDetail.new
    
   end
 
   def export_csv
-    @products = Product.where(supplier_id: current_supplier.id).joins(orders: :user).pluck('users.name,products.name,orders.created_at,products.id,users.id,orders.order_status')
-    respond_to do |format|
+    @products =	current_supplier.products.joins(:order_details,[{orders: :user}]).pluck('users.name,products.name,order_details.created_at,products.id,users.id,order_details.order_status')
+ 	   respond_to do |format|
     format.html {}
-    format.csv { send_data @products.to_csv ,filename: "orders-#{Date.today}.csv"
+    format.csv { send_data @products.to_csv ,filename: "order_details-#{Date.today}.csv"
     }
     end  
   end
 
   def delivered_product
 
-  	@products =	Product.where(supplier_id: current_supplier.id).joins(orders: :user).where(orders:{order_status:1}).pluck('users.name,products.name,orders.delivery_date,products.id,users.id')	
+    @products =	current_supplier.products.joins(:order_details,[{orders: :user}]).pluck('users.name,products.name,order_details.created_at,products.id,users.id,order_details.order_status')
+ 		
   end
 
   def delivered_create
-  	@order = Order.find_by(product_id: params[:product_id])
+  	@order = OrderDetail.find_by(product_id: params[:product_id])
   	if @order.update(order_status: true, delivery_date: Date.today)
   		redirect_to delivered_product_path
   	end

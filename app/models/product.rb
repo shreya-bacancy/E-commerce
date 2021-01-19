@@ -7,7 +7,8 @@ class Product < ApplicationRecord
   delegate :category_type , to: :category
   belongs_to :supplier
   has_and_belongs_to_many :wishlists
-  has_many :orders, dependent: :destroy, inverse_of: :product
+  has_many :order_details
+  has_many :orders, through: :order_details,dependent: :destroy
   has_many :users, through: :orders
   has_many_attached :images
   has_many :reviews

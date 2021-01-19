@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products, through: :orders
   has_many :orders
+  has_many :order_details , through: :orders
   has_one :wishlist
   has_many :addresses
   has_many :reviews

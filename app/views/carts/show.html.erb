@@ -35,7 +35,7 @@
                     <div class="cart_item_title">Price</div>
                     <div class="cart_item_text"><%= product.price %></div>
                   </div>
-                   <%= form_for @order , url:address_show_add_path(@cart_products), method: :get do |f|%>
+                   <%= form_with url:address_show_add_path(@cart_products),local:true , method: :get do |f|%>
                   <div class="cart_item_quantity cart_info_col">
                     <div class="cart_item_title ml-4">Quantity</div>
                     <div class="cart_item_text ml-4">

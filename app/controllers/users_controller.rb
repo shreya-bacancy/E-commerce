@@ -10,9 +10,13 @@ class UsersController < ApplicationController
   end
 
   def order
-    @orders = Order.where(user_id: current_user.id)
-    @products = Product.where(id: @orders.pluck(:product_id))
-    @order = Product.where(id: @orders.pluck(:product_id)).joins(:orders).pluck("orders.order_status")
+    @orders = current_user.orders
+    #@products = current_user.orders.collect{|a| a.order_details}
+
+    @products = current_user.order_details
+    # @product_ids =  current_user.order_details.pluck(:product_id)
+    # @product_images = Product.find(@product_ids)
+   # @order = Product.where(id: @orders.pluck(:product_id)).joins(:orders).pluck("orders.order_status")
 
     render 'order_show'
   end

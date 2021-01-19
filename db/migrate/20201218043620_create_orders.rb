@@ -3,11 +3,10 @@
 class CreateOrders < ActiveRecord::Migration[6.0]
   def change
     create_table :orders do |t|
-      t.references :product, null: false, foreign_key: true
+      # t.references :product, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-      t.integer :quantity , default: 1
-      t.date :delivery_date , default: Date.today
-      t.boolean :order_status , default: 0
+      # t.integer :quantity , default: 1
+    
       t.timestamps
     end
   end

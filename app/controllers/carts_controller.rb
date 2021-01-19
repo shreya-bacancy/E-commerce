@@ -5,7 +5,7 @@ class CartsController < ApplicationController
   before_action :show, only: %i[address_show_add payment_success payment_option]
 
   def show
-    @order = Order.new
+    @order_details = OrderDetail.new
   
     cart_ids = $redis.smembers current_user_cart
     @cart_products = Product.find(cart_ids)
@@ -30,9 +30,10 @@ class CartsController < ApplicationController
   end
 
   def address_show_add
+    #binding.pry
     @address = Address.where(user_id: current_user.id)
-    puts "hjhkhk#{params[:order][:quantity]}"
     @user = User.find(current_user.id)
+   
   end
 
   def new_address
@@ -45,12 +46,19 @@ class CartsController < ApplicationController
     # while(params[:id].count)
     product_ids = params[:id].split('/')
     @user = User.find(current_user.id)
+    @order = current_user.orders.build
     product_ids.each do |id|
       puts "ppppppp#{params[:quantity]}"
-      @order = Order.new(user_id: current_user.id, product_id: id, quantity: params[:quantity])
-
-      next unless @order.save
-
+      @product = Product.find(id)
+     
+     @order.save
+     
+      #@order = Order.new(user_id: current_user.id, product_id: id, quantity: params[:quantity])
+      @order_details = OrderDetail.new(product_id: id,order_id: @order.id,name:@product.name,price: @product.price,color:@product.color,size:@product.size,discount:@product.discount,total:params[:total], quantity: params[:quantity])
+     
+      unless @order_details.save
+      
+     
       OrderMailer.with(user: @user).order_email.deliver_now
       @products = Product.find(id)
       $redis.srem current_user_cart, id
@@ -59,6 +67,9 @@ class CartsController < ApplicationController
       # else
       # 	render plain: @order.product_id
       # end
+      else
+       @order.destroy 
+   
     end
   end
 

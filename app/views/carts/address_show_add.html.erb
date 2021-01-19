@@ -11,7 +11,7 @@
 	</div>
 		<div class="row">
 		<div class="col-1">Quantity :</div>
-		<div class="col-3"><%= params[:order][:quantity] %></div>
+		<div class="col-3"><%= params[:quantity] %></div>
 	</div>
 	<div class="row">
 		<div class="col-1">Discount :</div>
@@ -22,11 +22,11 @@
 		<div class="row">
 			<div class="col-1">Total :</div>
 			<% @total = current_user.total_price - @cart_discount %>
-			<div class="col-3"><%= @total*params[:order][:quantity].to_i %></div>
+			<div class="col-3"><%= @total*params[:quantity].to_i %></div>
 		</div>
 		<div class="row">
 			<div class="col-2 button banner_button mx-2 text-align-center"><%= link_to "view details" , carts_show_path%></div>
-			<div class="col-2 button banner_button text-center"><%= link_to "confirm" , payment_path(@cart_products,params[:order][:quantity],@total) %></div>
+			<div class="col-2 button banner_button text-center"><%= link_to "confirm" , payment_path(@cart_products,params[:quantity],@total) %></div>
 		</div>
 	</div>
 </div>
