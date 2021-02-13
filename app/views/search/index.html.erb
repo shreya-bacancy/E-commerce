@@ -6,8 +6,8 @@
 			<div class="row fill_height">
 				<div class="banner_product_image"></div>
     			<div class="col-lg-8 offset-lg-4 fill_height">
-    				<div class="row align-items-center">
-						<% if @products.exists? %>
+					<div class="row align-items-center">
+							<% if @products.present? %>
 						<% @products.each do |product|%>
 
 				<div class="col-6">
@@ -37,7 +37,7 @@
 			<h1>Oops! No matching products...	</h1>
 				
 				<% end %>
-							<%= paginate @products %>
+							
 					</div>
 				</div>
 			</div>

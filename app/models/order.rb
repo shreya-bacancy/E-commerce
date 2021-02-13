@@ -6,10 +6,6 @@ class Order < ApplicationRecord
   visitable 
   has_many :order_details , dependent: :destroy
   has_many :products , through: :order_details
-  # def stock
-  #   @stock = 
-  # end
-  # validates :quantity, length:{minimum:1 , maximum: "#{stock}"}
    def self.to_csv
    	 attributes = %w{user_name product order_time order_status}
    CSV.generate(headers: true) do |csv|

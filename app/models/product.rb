@@ -1,9 +1,10 @@
 # frozen_string_literal: true
-#require 'elasticsearch/model'
+require 'elasticsearch/model'
 class Product < ApplicationRecord
-  # include Elasticsearch::Model
-  # include Elasticsearch::Model::Callbacks
+  #  include Elasticsearch::Model
+  #  include Elasticsearch::Model::Callbacks
   visitable 
+  
   has_many :events, class_name: "Ahoy::Event"
   belongs_to :category
   delegate :category_type , to: :category
@@ -14,14 +15,6 @@ class Product < ApplicationRecord
   has_many :users, through: :orders
   has_many_attached :images
   has_many :reviews
-
-    # settings index: { number_of_shards: 1 } do
-    # mappings dynamic: 'false' do
-    #   indexes :name, analyzer: 'english'
-     # indexes :overview, analyzer: 'english'
-  #   end
-  # end
-
   def cart_action(current_user_id)
     if $redis.sismember "cart#{current_user_id}", id
       'Remove from'

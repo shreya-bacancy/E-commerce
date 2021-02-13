@@ -9,20 +9,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-# 5.times do
-# 	i=1
-# 	User.create(name:"test#{i}",
-# 		email: "test#{i}@gmail.com",
-# 		password: "123456",
-# 		address: "ram nagar #{i}",
-# 		city: "nimbhahera",
-# 		state: "rajasthan",
-# 		pincode: 312601,
-# 		dob: Faker::Date.birthday(min_age: 18, max_age: 65),
-# 		contact_no: "7300#{i}66751"
-# 		)
-# 	i=i+1
-# end
+5.times do
+	i=1
+	User.create(name:"test#{i}",
+		email: "test#{i}@gmail.com",
+		password: "123456",
+		address: "ram nagar #{i}",
+		city: "nimbhahera",
+		state: "rajasthan",
+		pincode: 312601,
+		dob: Faker::Date.birthday(min_age: 18, max_age: 65),
+		contact_no: "7300#{i}66751"
+		)
+	i=i+1
+end
 
 # 5.times do
 # 	i=0

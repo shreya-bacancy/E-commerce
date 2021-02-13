@@ -2,12 +2,14 @@
 <h3 class="my-4 text-primary"> Reviews</h3>
 <hr>
 <% @review.each do |review| %>
+ 
+
 <div class="ml-4">
   <h5 class="fa fa-user-circle"><span class="ml-2"><%= review.user.name %></span></h5>
    <div class="review-rating" data-score = "<%= review.rating %>"></div>
 
   <p><%= review.content %></p>
-    <p><%= review.created_at.strftime("%d/%m/%y at %I:%M%p") %></p>
+    <p><%= time_ago_in_words(review.created_at) %>ago</p>
 
 <div class="button mr-3">	<%= link_to "edit", edit_review_path(review)%></div>
 	<div class="button"><%= link_to "delete", review_path(review) , method: :delete%></div>
@@ -18,12 +20,3 @@
 <hr>
 <% end %>
 </center>
-<script>
-  $('.review-rating').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-</script>

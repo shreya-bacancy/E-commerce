@@ -11,8 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
 
-*= require owl.carousel
-
  */
 
 @import "bootstrap-sprockets";
@@ -26,5 +24,6 @@
 @import "regular_styles";
 @import "product_styles";
 @import "font-awesome";
-
+@import 'owl.carousel/dist/assets/owl.carousel.css';
+@import 'owl.carousel';
 

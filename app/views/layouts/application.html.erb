@@ -165,10 +165,12 @@
                   <div class="header_search_content">
                     <div class="header_search_form_container">
                       <%= form_with url: search_index_path, method: :get,local: true, class:
-                      "header_search_form clearfix" do |form| %>
-                       <%= form.text_field :query, value: params[:query], class: 'header_search_input', placeholder: 'search for products' %>
-                      <%end%>
-                        
+                      "header_search_form clearfix" do |f| %>
+                       <%= text_field_tag :q, params[:q], class: 'header_search_input', placeholder: 'search for products' %>
+                      
+                       <%end%>
+                     
+                      
                         <button
                           type="submit"
                           class="header_search_button trans_300"

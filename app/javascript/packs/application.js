@@ -10,6 +10,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("chartkick")
 require("chart.js");
+require('owl.carousel');
 //= require jquery3
 //= require jquery.elevatezoom
 //= require jquery.elevateZoom-3.0.8.min
