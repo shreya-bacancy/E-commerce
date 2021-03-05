@@ -1,0 +1,39 @@
+<table class="table table-hover", id="destroy-order">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">user Name</th>
+					<th scope="col">product name</th>
+					<th scope="col">order time</th>
+					<th scope="col"></th>
+					
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+			
+				<% @products.each do |product|%>
+				<tr>
+
+					<th scope="row"></th>
+					<td><%=product[0]%></td>
+					<td><%=product[1]%></td>
+					<td><%=product[2].strftime("%d/%m/%y at %I:%M%p")%></td>
+			
+					
+					<td><%=link_to "cancel order",order_cancel_path(product[3],product[4]),id: product[3], method: :delete,remote: true%></td>
+					 <%= form_for @order_detail , url:delivered_products_path(product[3]) do |f|%>
+					 <%if product[5]==true%>
+					<td><%= f.check_box "order_status", {checked: true  ,disabled: "disabled"}%></td>
+					<td><%= f.submit "delivered",disabled: true %></td>
+					<%else%>
+						<td><%= f.check_box "order_status", disabled: true%></td>
+						<td><%= f.submit "deliver" %></td>
+						<%end%>
+					
+					<% end %>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
