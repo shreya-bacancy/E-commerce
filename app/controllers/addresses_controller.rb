@@ -15,8 +15,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/new
   def new
-    @user_contact = User.find(current_user.id)
-    @user = Address.where(user_id: current_user.id)
+    @user = current_user.addresses
     @address = Address.new
   end
 
@@ -68,9 +67,6 @@ class AddressesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_address
     @address = Address.find(params[:id])
-    # @address = Address.where(user_id: current_user.id)
-    #   @address= User.find(current_user.id).addresses
-    # @current_address = Address.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

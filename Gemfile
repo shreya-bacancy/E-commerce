@@ -23,6 +23,7 @@ gem 'elasticsearch-rails','~> 6'
 gem 'owlcarousel-rails'
 gem 'pry-rails'
 gem 'puma', '~> 4.1'
+gem 'aws-sdk-s3', require: false
 gem 'redis'
 gem "mini_magick"
 gem 'image_processing'
@@ -53,6 +54,8 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'popper_js'
 gem 'rails_admin', '~> 2.0'
+gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary'
 # gem "rails_admin_import", "~> 2.2"
 # gem "charlock_holmes"
 gem 'cancancan'

@@ -3,7 +3,7 @@ class WishlistsController < ApplicationController
 
   before_action :authenticate_user!  
   def index
-    @wishlists = Wishlist.where(user_id: current_user)
+    @wishlist = current_user.wishlist
     @wishlist_count = @wishlists.count
   end
 
@@ -12,16 +12,16 @@ class WishlistsController < ApplicationController
   end
 
   def show
-    @wishlists = Wishlist.where(user_id: current_user)
+    @wishlist = current_user.wishlist
     @user_wishlist = Product.joins(wishlists: :user).page(params[:page]).per(7)
     @categories = Category.pluck(:category_type)
   end
 
   def create
-    @wishlist = Wishlist.find_by(user_id: current_user.id)
-    if Wishlist.find_by(user_id: current_user.id)
+    @wishlist = current_user.wishlist
+    if @wishlist
     else
-      @wishlist = Wishlist.create(user_id: current_user.id, product_id: params[:product_id])
+      @wishlist = current_user.wishlist.create(product_id: params[:product_id])
     end
     # if @wishlist.save
     @product_id = Product.find(params[:product_id])
@@ -30,7 +30,7 @@ class WishlistsController < ApplicationController
   end
 
   def destroy
-    @wishlist = Wishlist.find_by(user_id: current_user.id)
+    @wishlist = current_user.wishlist
     @product_id = Product.find(params[:product_id])
     # binding.pry
 

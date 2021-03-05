@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
-    @review = Review.where(user_id: current_user.id)
+    @review = current_user.reviews
     render 'index'
   end
 

@@ -2,10 +2,8 @@
 
 class SearchController < ApplicationController
   def index
-    
     @categories = Category.pluck(:category_type)
-
-  @products = Product.where('name Ilike ?', "%#{params[:q]}%").page(params[:page]).per(7)
+    @products = Product.where('name Ilike ?', "%#{params[:q]}%").page(params[:page]).per(7)
     # if params[:q].nil?
     #  	@products = []
     #  else
@@ -24,7 +22,6 @@ class SearchController < ApplicationController
      	@products = Product.search params[:q]
      end
   # @products = Product.where('name Ilike ?', "%#{params[:query]}%").page(params[:page]).per(7)
-
     render 'supplier/search'
   end
 end

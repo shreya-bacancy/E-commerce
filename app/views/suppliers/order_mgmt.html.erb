@@ -1,7 +1,7 @@
 <% unless current_supplier.admin? %>
 <%= render 'supplier/navbar' %>
 <div style="float:right;" class=" button "><%=link_to 'Export orders', export_csv_path(format: 'csv')  %></div>
-
+<td><%=link_to "generate pdf",order_mgmt_path(@products,:format=>:pdf)%></td>
 		<table class="table table-hover", id="destroy-order">
 			<thead>
 				<tr>

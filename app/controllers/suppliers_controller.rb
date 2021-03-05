@@ -4,12 +4,19 @@ class SuppliersController < ApplicationController
   def order_mgmt
     @products =	current_supplier.products.joins(:order_details,[{orders: :user}]).pluck('users.name,products.name,order_details.created_at,products.id,users.id,order_details.order_status')
  		@order_detail = OrderDetail.new
-   
+    respond_to do |format|
+    format.html
+    format.pdf do
+    render pdf: "suppliers/orders.pdf",
+    template: "suppliers/order_mgmt.pdf.erb",
+    layout: 'application.html'
+    end
+    end
   end
 
   def export_csv
     @products =	current_supplier.products.joins(:order_details,[{orders: :user}]).pluck('users.name,products.name,order_details.created_at,products.id,users.id,order_details.order_status')
- 	   respond_to do |format|
+ 	  respond_to do |format|
     format.html {}
     format.csv { send_data @products.to_csv ,filename: "order_details-#{Date.today}.csv"
     }
@@ -17,9 +24,7 @@ class SuppliersController < ApplicationController
   end
 
   def delivered_product
-
     @products =	current_supplier.products.joins(:order_details,[{orders: :user}]).pluck('users.name,products.name,order_details.created_at,products.id,users.id,order_details.order_status')
- 		
   end
 
   def delivered_create
